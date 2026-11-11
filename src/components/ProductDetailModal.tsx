@@ -32,10 +32,10 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
         role="dialog"
         aria-modal="true"
         aria-labelledby="modal-product-title"
-        className="relative w-full max-w-3xl bg-white border border-[#E7E5DE] rounded-lg shadow-xl overflow-hidden my-8 z-10"
+        className="relative w-full max-w-3xl bg-[#FAF9F5] border border-[#DDD8CC] rounded-2xl shadow-2xl overflow-hidden my-8 z-10"
       >
         {/* Top Header */}
-        <div className="flex items-center justify-between px-6 py-4 bg-[#F8F7F3] border-b border-[#E7E5DE]">
+        <div className="flex items-center justify-between px-6 py-4 bg-[#F1EFE8] border-b border-[#DDD8CC]">
           <span className="font-mono text-xs uppercase tracking-wider text-[#77776F]">
             Product Details // {product.categoryLabel}
           </span>
@@ -43,7 +43,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           <button
             onClick={onClose}
             aria-label="Close details"
-            className="p-1 rounded-md text-[#77776F] hover:text-[#242720] hover:bg-[#E7E5DE] transition-colors"
+            className="p-1 rounded-md text-[#77776F] hover:text-[#272923] hover:bg-[#EAE6DC] transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -53,11 +53,11 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 p-6 sm:p-8">
           {/* Left Column: Image & Media (5 cols) */}
           <div className="md:col-span-5 flex flex-col gap-4">
-            <div className="relative aspect-square w-full rounded-md bg-[#FAFAFA] p-6 border border-[#E7E5DE] flex items-center justify-center">
+            <div className="relative aspect-square w-full rounded-xl bg-gradient-to-b from-[#F6F4EE] to-[#EBE7DE] p-6 border border-[#DDD8CC] flex items-center justify-center shadow-inner">
               <img
                 src={product.image}
                 alt={product.name}
-                className="max-h-full max-w-full object-contain filter contrast-[1.02]"
+                className="max-h-full max-w-full object-contain filter contrast-[1.03] drop-shadow-[0_8px_16px_rgba(39,41,35,0.14)]"
               />
               {product.badge && (
                 <div className="absolute top-3 left-3">
@@ -139,14 +139,14 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
               </div>
 
               {/* Highlights */}
-              <div className="flex flex-col gap-1.5 pt-2 border-t border-[#E7E5DE]">
-                <span className="font-headline text-xs font-bold text-[#242720]">
+              <div className="flex flex-col gap-1.5 pt-2 border-t border-[#DDD8CC]">
+                <span className="font-headline text-xs font-bold text-[#272923]">
                   Highlights
                 </span>
                 <div className="flex flex-col gap-1 text-xs text-[#77776F]">
                   {product.features.map((feature) => (
                     <div key={feature} className="flex items-start gap-2">
-                      <Check className="w-3.5 h-3.5 text-[#66785F] shrink-0 mt-0.5" />
+                      <Check className="w-3.5 h-3.5 text-[#52634B] shrink-0 mt-0.5" />
                       <span>{feature}</span>
                     </div>
                   ))}
@@ -155,12 +155,12 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             </div>
 
             {/* Bottom Actions */}
-            <div className="flex flex-col sm:flex-row items-center gap-3 pt-4 border-t border-[#E7E5DE]">
+            <div className="flex flex-col sm:flex-row items-center gap-3 pt-4 border-t border-[#DDD8CC]">
               <a
                 href={inquiryUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:flex-1 py-3 px-5 rounded-md bg-[#242720] hover:bg-[#66785F] text-white font-headline text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-2 transition-colors text-center"
+                className="w-full sm:flex-1 py-3 px-5 rounded-xl bg-[#272923] hover:bg-[#52634B] text-white font-headline text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-2 transition-colors text-center shadow-sm"
               >
                 <MessageSquare className="w-4 h-4" />
                 <span>Inquire on WhatsApp</span>
@@ -168,9 +168,9 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
 
               <a
                 href={`tel:${DISPLAY_PHONE.replace(/\s+/g, '')}`}
-                className="w-full sm:w-auto py-3 px-5 rounded-md bg-[#F0EFE9] hover:bg-[#E7E5DE] border border-[#E7E5DE] text-[#242720] font-headline text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-2 transition-colors"
+                className="w-full sm:w-auto py-3 px-5 rounded-xl bg-[#F1EFE8] hover:bg-[#EAE6DC] border border-[#DDD8CC] text-[#272923] font-headline text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-2 transition-colors"
               >
-                <Phone className="w-4 h-4 text-[#66785F]" />
+                <Phone className="w-4 h-4 text-[#52634B]" />
                 <span>Call Store</span>
               </a>
             </div>

@@ -85,7 +85,7 @@ export const HeroSection: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full bg-[#F8F7F3] pt-28 sm:pt-36 lg:pt-40 pb-16 lg:pb-24 border-b border-[#E7E5DE] overflow-hidden"
+      className="relative w-full bg-[#F8F7F3] pt-28 sm:pt-36 lg:pt-40 pb-16 lg:pb-24 border-b border-[#E2DFD6] overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center min-h-[520px]">
@@ -98,7 +98,7 @@ export const HeroSection: React.FC = () => {
             {/* Headline with word-by-word line reveal wrapper */}
             <h1
               ref={headlineRef}
-              className="font-headline text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#242720] leading-[1.05] mb-6 overflow-hidden"
+              className="font-headline text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#272923] leading-[1.05] mb-6 overflow-hidden"
             >
               <span className="inline-block overflow-hidden py-1">
                 <span className="reveal-word inline-block mr-3">Find</span>
@@ -119,7 +119,7 @@ export const HeroSection: React.FC = () => {
             <div ref={ctaRef} className="flex flex-wrap items-center gap-4">
               <a
                 href="#featured-collection"
-                className="px-7 py-3.5 rounded-md bg-[#242720] hover:bg-[#66785F] text-white font-headline text-xs sm:text-sm font-semibold tracking-wider transition-all duration-200 flex items-center gap-2 shadow-sm hover:shadow"
+                className="px-7 py-3.5 rounded-xl bg-[#272923] hover:bg-[#66785F] text-white font-headline text-xs sm:text-sm font-semibold tracking-wider transition-all duration-200 flex items-center gap-2 shadow-sm hover:shadow"
               >
                 <span>EXPLORE COLLECTION</span>
                 <ArrowRight className="w-4 h-4" />
@@ -127,7 +127,7 @@ export const HeroSection: React.FC = () => {
 
               <a
                 href="#store-location"
-                className="px-6 py-3.5 rounded-md bg-[#F0EFE9] hover:bg-[#E7E5DE] text-[#242720] border border-[#E7E5DE] font-headline text-xs sm:text-sm font-semibold tracking-wider transition-colors flex items-center gap-2"
+                className="px-6 py-3.5 rounded-xl bg-[#F1EFE8] hover:bg-[#EAE6DC] text-[#272923] border border-[#DDD8CC] font-headline text-xs sm:text-sm font-semibold tracking-wider transition-colors flex items-center gap-2"
               >
                 <MapPin className="w-4 h-4 text-[#77776F]" />
                 <span>VISIT FLAGSHIP STORE</span>
@@ -135,9 +135,9 @@ export const HeroSection: React.FC = () => {
             </div>
 
             {/* Quiet Credential Footnote */}
-            <div className="mt-12 pt-6 border-t border-[#E7E5DE] flex items-center gap-6 text-xs text-[#77776F]">
+            <div className="mt-12 pt-6 border-t border-[#E2DFD6] flex items-center gap-6 text-xs text-[#77776F]">
               <span>44/319, Meston Road, Parade</span>
-              <span className="w-1 h-1 rounded-full bg-[#E7E5DE]" />
+              <span className="w-1 h-1 rounded-full bg-[#DDD8CC]" />
               <span>100% Genuine Direct Import</span>
             </div>
           </div>
@@ -146,7 +146,7 @@ export const HeroSection: React.FC = () => {
           <div className="lg:col-span-6">
             <div
               ref={imageContainerRef}
-              className="relative aspect-[4/3] sm:aspect-[16/11] w-full rounded-lg overflow-hidden bg-[#F0EFE9] border border-[#E7E5DE] shadow-sm"
+              className="relative aspect-[4/3] sm:aspect-[16/11] w-full rounded-2xl overflow-hidden bg-[#F1EFE8] border border-[#DDD8CC] shadow-[0_8px_30px_rgba(39,41,35,0.06)]"
             >
               <img
                 ref={imageRef}
@@ -155,10 +155,10 @@ export const HeroSection: React.FC = () => {
                 className="w-full h-full object-cover object-center filter contrast-[1.02] will-change-transform"
                 loading="eager"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
 
               {/* Subtle caption pill */}
-              <div className="absolute bottom-4 left-4 px-3 py-1.5 rounded bg-white/90 backdrop-blur-sm border border-[#E7E5DE] text-xs text-[#242720] font-body shadow-sm">
+              <div className="absolute bottom-4 left-4 px-3 py-1.5 rounded-lg bg-white/95 backdrop-blur-sm border border-[#DDD8CC] text-xs text-[#272923] font-body shadow-sm">
                 Curated for competitive athletes &amp; sports enthusiasts
               </div>
             </div>

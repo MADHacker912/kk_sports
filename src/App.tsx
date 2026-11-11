@@ -33,7 +33,7 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F7F3] text-[#242720] flex flex-col relative selection:bg-[#66785F] selection:text-white">
+    <div className="min-h-screen bg-[#F8F7F3] text-[#272923] flex flex-col relative selection:bg-[#52634B] selection:text-white">
       {/* 1. Minimal Premium Navigation */}
       <Navigation onOpenSearch={() => setSearchModalOpen(true)} />
 

@@ -73,12 +73,12 @@ export const BrandIntroduction: React.FC = () => {
     <section
       ref={sectionRef}
       id="brand-introduction"
-      className="w-full bg-[#F0EFE9] py-20 lg:py-28 px-4 sm:px-6 lg:px-8 border-b border-[#E7E5DE] overflow-hidden"
+      className="w-full bg-[#F1EFE8] py-20 lg:py-28 px-4 sm:px-6 lg:px-8 border-b border-[#E2DFD6] overflow-hidden"
     >
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         {/* Left Column: Natural Editorial Photography (5 cols) */}
         <div className="lg:col-span-5 order-2 lg:order-1">
-          <div className="relative aspect-[4/5] w-full rounded-lg overflow-hidden bg-[#E7E5DE] border border-[#E7E5DE] shadow-sm">
+          <div className="relative aspect-[4/5] w-full rounded-2xl overflow-hidden bg-[#EAE6DC] border border-[#DDD8CC] shadow-[0_8px_30px_rgba(39,41,35,0.06)]">
             <img
               ref={imageRef}
               src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=1200&q=80"
@@ -86,66 +86,67 @@ export const BrandIntroduction: React.FC = () => {
               className="w-full h-full object-cover object-center filter contrast-[1.02] will-change-transform"
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#272923]/35 via-transparent to-transparent pointer-events-none" />
 
-            <div className="absolute bottom-6 left-6 right-6 p-4 rounded bg-white/95 backdrop-blur-sm border border-[#E7E5DE] shadow-sm">
-              <span className="font-mono text-[10px] uppercase tracking-widest text-[#66785F] block mb-1 font-semibold">
-                HERITAGE // PARADE, KANPUR
+            {/* Subtle authentic caption */}
+            <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white/95 text-xs font-mono">
+              <span className="bg-[#272923]/75 backdrop-blur-sm px-3 py-1 rounded-md border border-white/10">
+                Parade Atelier • Est. Kanpur
               </span>
-              <p className="font-headline text-sm font-semibold text-[#242720]">
-                Supplying grassroots champions and tournament athletes.
-              </p>
+              <span className="bg-[#272923]/75 backdrop-blur-sm px-3 py-1 rounded-md border border-white/10">
+                100% Genuine
+              </span>
             </div>
           </div>
         </div>
 
-        {/* Right Column: Editorial Text (7 cols) */}
-        <div className="lg:col-span-7 flex flex-col justify-center order-1 lg:order-2">
-          <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#66785F] mb-4 font-semibold">
-            ABOUT K.K. SPORTS
-          </span>
+        {/* Right Column: Editorial Brand Story (7 cols) */}
+        <div className="lg:col-span-7 order-1 lg:order-2 flex flex-col justify-center gap-6">
+          <div ref={headingRef}>
+            <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#66785F] mb-3 block font-semibold">
+              ABOUT K.K. SPORTS // KANPUR
+            </span>
+            <h2 className="font-headline text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#272923] leading-tight">
+              A Kanpur Sporting Legacy Built on Authentic Craft.
+            </h2>
+          </div>
 
-          <h2
-            ref={headingRef}
-            className="font-headline text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#242720] leading-[1.1] mb-6"
-          >
-            Grounded in Craft. <br />
-            Built for the Field.
-          </h2>
-
-          <div ref={contentRef} className="flex flex-col">
-            <p className="font-body text-base sm:text-lg text-[#242720] leading-relaxed mb-4">
-              Located in the historic sports quarter of Meston Road, Parade, K.K. Sports has supported players, schools, and local academies across Uttar Pradesh with genuine athletic equipment and expert guidance.
+          <div ref={contentRef} className="flex flex-col gap-6 text-[#77776F] font-body text-base leading-relaxed">
+            <p>
+              Located in the sporting hub of Meston Road, Parade, K.K. Sports serves cricket academies, tournament clubs, and recreational athletes with verified genuine equipment and in-house preparation ateliers.
+            </p>
+            <p>
+              From custom digital willow knocking to high-tension electronic racket restringing, every piece of gear is handled with deep technical precision and personal integrity.
             </p>
 
-            <p className="font-body text-sm sm:text-base text-[#77776F] leading-relaxed mb-8">
-              Whether selecting a Grade-1 English willow blade, outfitting a football club with FIFA standard match balls, or restringing a badminton racket for an upcoming district tournament, we remain committed to verified authenticity without shortcuts.
-            </p>
-
-            {/* Clean 2-column Service & Sourcing notes */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6 border-t border-[#E7E5DE]">
-              <div className="flex flex-col gap-1.5">
-                <div className="flex items-center gap-2 text-[#242720]">
-                  <ShieldCheck className="w-4 h-4 text-[#66785F]" />
-                  <span className="font-headline text-sm font-bold">
-                    Authorized Direct Sourcing
-                  </span>
+            {/* Subtle feature pills */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-[#DDD8CC]">
+              <div className="flex items-start gap-3 p-4 rounded-xl bg-[#F8F7F3] border border-[#DDD8CC] shadow-sm">
+                <div className="w-8 h-8 rounded-full bg-[#E7EBE2] text-[#66785F] flex items-center justify-center shrink-0">
+                  <ShieldCheck className="w-4 h-4" />
                 </div>
-                <p className="font-body text-xs text-[#77776F] leading-normal">
-                  Direct official inventory from SS, SG, Yonex, Cosco, Nivia, and Mikasa with manufacturer warranty.
-                </p>
+                <div>
+                  <h3 className="font-headline text-sm font-bold text-[#272923]">
+                    100% Genuine Equipment
+                  </h3>
+                  <p className="font-body text-xs text-[#77776F] mt-0.5">
+                    Authorized dealer sourcing with zero counterfeit guarantee.
+                  </p>
+                </div>
               </div>
 
-              <div className="flex flex-col gap-1.5">
-                <div className="flex items-center gap-2 text-[#242720]">
-                  <Wrench className="w-4 h-4 text-[#66785F]" />
-                  <span className="font-headline text-sm font-bold">
-                    Atelier Preparation Lab
-                  </span>
+              <div className="flex items-start gap-3 p-4 rounded-xl bg-[#F8F7F3] border border-[#DDD8CC] shadow-sm">
+                <div className="w-8 h-8 rounded-full bg-[#E7EBE2] text-[#66785F] flex items-center justify-center shrink-0">
+                  <Wrench className="w-4 h-4" />
                 </div>
-                <p className="font-body text-xs text-[#77776F] leading-normal">
-                  On-site machine bat knocking, raw oiling, edge resin armor, and precision electronic racket restringing.
-                </p>
+                <div>
+                  <h3 className="font-headline text-sm font-bold text-[#272923]">
+                    Pro Workshop Atelier
+                  </h3>
+                  <p className="font-body text-xs text-[#77776F] mt-0.5">
+                    Automated knocking lab and certified racket restringing.
+                  </p>
+                </div>
               </div>
             </div>
           </div>

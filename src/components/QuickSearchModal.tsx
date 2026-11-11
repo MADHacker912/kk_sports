@@ -43,14 +43,14 @@ export const QuickSearchModal: React.FC<QuickSearchModalProps> = ({
     <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4">
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-[#242720]/40 backdrop-blur-sm"
+        className="fixed inset-0 bg-[#272923]/45 backdrop-blur-sm"
         onClick={onClose}
       />
 
       {/* Search Container */}
-      <div className="relative w-full max-w-xl bg-white border border-[#E7E5DE] rounded-lg shadow-xl overflow-hidden z-10">
+      <div className="relative w-full max-w-xl bg-[#FAF9F5] border border-[#DDD8CC] rounded-2xl shadow-2xl overflow-hidden z-10">
         {/* Search Input Bar */}
-        <div className="flex items-center px-4 py-3.5 bg-[#F8F7F3] border-b border-[#E7E5DE] gap-3">
+        <div className="flex items-center px-4 py-3.5 bg-[#F1EFE8] border-b border-[#DDD8CC] gap-3">
           <Search className="w-4 h-4 text-[#77776F] shrink-0" />
           <input
             ref={inputRef}
@@ -58,19 +58,19 @@ export const QuickSearchModal: React.FC<QuickSearchModalProps> = ({
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search cricket, football, rackets, fitness, carrom..."
-            className="w-full bg-transparent text-[#242720] font-body text-sm placeholder:text-[#77776F] focus:outline-none"
+            className="w-full bg-transparent text-[#272923] font-body text-sm placeholder:text-[#77776F] focus:outline-none"
           />
           {query && (
             <button
               onClick={() => setQuery('')}
-              className="text-[#77776F] hover:text-[#242720] p-1"
+              className="text-[#77776F] hover:text-[#272923] p-1"
             >
               <X className="w-4 h-4" />
             </button>
           )}
           <button
             onClick={onClose}
-            className="px-2 py-0.5 rounded bg-[#F0EFE9] hover:bg-[#E7E5DE] text-[10px] font-mono uppercase tracking-wider text-[#77776F] hover:text-[#242720] transition-colors"
+            className="px-2 py-0.5 rounded bg-[#EAE6DC] hover:bg-[#DCD7CA] text-[10px] font-mono uppercase tracking-wider text-[#77776F] hover:text-[#272923] transition-colors"
           >
             ESC
           </button>

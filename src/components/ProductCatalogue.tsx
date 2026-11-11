@@ -43,15 +43,14 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
     const cards = gridRef.current.querySelectorAll('.product-card-item');
     if (!cards.length) return;
 
-    // Soft staggered entrance when grid enters view or category switches
     gsap.fromTo(
       cards,
-      { opacity: 0, y: 20 },
+      { opacity: 0, y: 18 },
       {
         opacity: 1,
         y: 0,
         duration: 0.5,
-        stagger: 0.06,
+        stagger: 0.05,
         ease: 'power2.out',
         overwrite: 'auto',
       }
@@ -62,16 +61,16 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
     <section
       id="featured-collection"
       ref={sectionRef}
-      className="w-full bg-[#F8F7F3] py-20 lg:py-28 px-4 sm:px-6 lg:px-8 border-b border-[#E7E5DE]"
+      className="w-full bg-[#FAF9F5] py-20 lg:py-28 px-4 sm:px-6 lg:px-8 border-b border-[#E2DFD6]"
     >
       <div className="max-w-7xl mx-auto flex flex-col gap-10">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[#E7E5DE] pb-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[#E2DFD6] pb-8">
           <div>
             <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#66785F] mb-2 block font-semibold">
               CATALOGUE ARCHIVE // VERIFIED STOCK
             </span>
-            <h2 className="font-headline text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#242720]">
+            <h2 className="font-headline text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#272923]">
               Featured Products
             </h2>
           </div>
@@ -90,8 +89,8 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
                 onClick={() => onCategoryChange(cat.id)}
                 className={`px-4 py-2 rounded-full text-xs font-headline font-semibold tracking-wider whitespace-nowrap transition-all border ${
                   isActive
-                    ? 'bg-[#242720] text-white border-[#242720] shadow-sm'
-                    : 'bg-[#F0EFE9] hover:bg-[#E7E5DE] text-[#77776F] hover:text-[#242720] border-[#E7E5DE]'
+                    ? 'bg-[#272923] text-white border-[#272923] shadow-sm'
+                    : 'bg-[#F1EFE8] hover:bg-[#EAE6DC] text-[#77776F] hover:text-[#272923] border-[#E2DFD6]'
                 }`}
               >
                 {cat.label}
@@ -100,7 +99,7 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
           })}
         </div>
 
-        {/* Clean White Product Cards Grid with Stagger Animation */}
+        {/* Product Cards Grid with Soft Warm Product Stages */}
         <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {filteredProducts.map((product) => {
             const inquiryUrl = getProductInquiryUrl(product.name);
@@ -109,41 +108,45 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
               <div
                 key={product.id}
                 onClick={() => onSelectProduct(product)}
-                className="product-card-item group bg-white rounded-xl border border-[#E7E5DE] hover:border-[#66785F] transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-pointer shadow-sm hover:shadow-md will-change-transform"
+                className="product-card-item group bg-[#FFFFFF] rounded-2xl border border-[#E2DFD6] hover:border-[#66785F] transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-pointer shadow-[0_2px_12px_rgba(39,41,35,0.03)] hover:shadow-[0_8px_24px_rgba(39,41,35,0.08)] will-change-transform"
               >
-                {/* Clean Product Image Stage */}
-                <div className="relative aspect-square w-full bg-[#FAFAFA] p-8 flex items-center justify-center overflow-hidden border-b border-[#E7E5DE]">
+                {/* Soft Neutral Warm Product Stage with Spotlight Gradient */}
+                <div className="relative aspect-square w-full bg-gradient-to-b from-[#F7F5EE] to-[#EFECE4] p-8 flex items-center justify-center overflow-hidden border-b border-[#E5E2DA]">
+                  {/* Subtle Radial Glow behind product */}
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.8)_0%,transparent_70%)] pointer-events-none" />
+
+                  {/* Product Visual */}
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="max-h-full max-w-full object-contain filter contrast-[1.03] group-hover:scale-105 transition-transform duration-500"
+                    className="max-h-full max-w-full object-contain filter contrast-[1.03] drop-shadow-[0_8px_14px_rgba(39,41,35,0.12)] group-hover:scale-106 transition-transform duration-500 relative z-10"
                     loading="lazy"
                   />
 
-                  {/* Subtle Badge */}
+                  {/* Badge */}
                   {product.badge && (
-                    <div className="absolute top-3 left-3">
-                      <span className="font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-[#F0EFE9] text-[#66785F] border border-[#E7E5DE] font-semibold">
+                    <div className="absolute top-3 left-3 z-20">
+                      <span className="font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-white/95 text-[#66785F] border border-[#E2DFD6] font-semibold shadow-xs">
                         {product.badge}
                       </span>
                     </div>
                   )}
 
                   {/* Hover Open Cue */}
-                  <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <div className="w-8 h-8 rounded-full bg-[#242720] text-white flex items-center justify-center shadow">
+                  <div className="absolute bottom-3 right-3 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                    <div className="w-8 h-8 rounded-full bg-[#272923] text-white flex items-center justify-center shadow-md">
                       <ArrowUpRight className="w-4 h-4" />
                     </div>
                   </div>
                 </div>
 
                 {/* Card Details */}
-                <div className="p-5 flex flex-col justify-between flex-1 gap-4">
+                <div className="p-5 flex flex-col justify-between flex-1 gap-4 bg-[#FFFFFF]">
                   <div>
                     <span className="font-body text-xs text-[#77776F] block mb-1">
                       {product.categoryLabel}
                     </span>
-                    <h3 className="font-headline text-base font-bold text-[#242720] group-hover:text-[#66785F] transition-colors leading-snug">
+                    <h3 className="font-headline text-base font-bold text-[#272923] group-hover:text-[#66785F] transition-colors leading-snug">
                       {product.name}
                     </h3>
                     <p className="font-body text-xs text-[#77776F] line-clamp-2 mt-1.5 leading-relaxed">
@@ -152,8 +155,8 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
                   </div>
 
                   {/* Price & Action Row */}
-                  <div className="pt-3 border-t border-[#E7E5DE] flex items-center justify-between">
-                    <span className="font-body text-xs text-[#242720] font-semibold">
+                  <div className="pt-3 border-t border-[#EAE6DC] flex items-center justify-between">
+                    <span className="font-body text-xs text-[#272923] font-semibold">
                       {product.priceDisplay || 'Inquire on Spec'}
                     </span>
 
@@ -162,7 +165,7 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className="px-3 py-1.5 rounded bg-[#F0EFE9] hover:bg-[#66785F] hover:text-white border border-[#E7E5DE] text-xs font-body text-[#242720] transition-colors flex items-center gap-1.5"
+                      className="px-3 py-1.5 rounded-lg bg-[#F1EFE8] hover:bg-[#66785F] hover:text-white border border-[#DDD8CC] text-xs font-body text-[#272923] transition-colors flex items-center gap-1.5"
                       title="Direct WhatsApp Inquiry"
                     >
                       <MessageSquare className="w-3.5 h-3.5 text-[#66785F] group-hover:text-white" />
