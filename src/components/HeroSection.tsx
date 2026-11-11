@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { ArrowRight, MapPin } from 'lucide-react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -7,13 +7,11 @@ import { CarModelViewer } from './3d/CarModelViewer';
 gsap.registerPlugin(ScrollTrigger);
 
 export const HeroSection: React.FC = () => {
-  const [heroView, setHeroView] = useState<'3d' | 'photo'>('3d');
   const sectionRef = useRef<HTMLElement | null>(null);
   const headlineRef = useRef<HTMLHeadingElement | null>(null);
   const descRef = useRef<HTMLParagraphElement | null>(null);
   const ctaRef = useRef<HTMLDivElement | null>(null);
-  const imageContainerRef = useRef<HTMLDivElement | null>(null);
-  const imageRef = useRef<HTMLImageElement | null>(null);
+  const stageContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -51,20 +49,6 @@ export const HeroSection: React.FC = () => {
             delay: 0.45,
           }
         );
-      }
-
-      // 3. Image parallax scroll
-      if (imageRef.current) {
-        gsap.to(imageRef.current, {
-          yPercent: 12,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: true,
-          },
-        });
       }
     }, sectionRef);
 
@@ -131,61 +115,23 @@ export const HeroSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: 3D Sports Car with Auto-Rotation (6 cols) */}
+          {/* Right Column: Pure 3D Model with Auto-Rotation (6 cols) */}
           <div className="lg:col-span-6">
             <div
-              ref={imageContainerRef}
+              ref={stageContainerRef}
               className="relative aspect-[4/3] sm:aspect-[16/11] min-h-[420px] w-full rounded-2xl overflow-hidden bg-gradient-to-b from-[#FAF9F5] via-[#F1EFE8] to-[#EAE6DC] border border-[#DDD8CC] shadow-[0_8px_30px_rgba(39,41,35,0.06)] flex items-center justify-center p-2"
             >
-              {/* Interactive View Switcher Tabs */}
-              <div className="absolute top-4 right-4 z-20 flex items-center gap-1 p-1 rounded-xl bg-white/90 backdrop-blur-sm border border-[#DDD8CC] shadow-xs">
-                <button
-                  onClick={() => setHeroView('3d')}
-                  className={`px-3 py-1 rounded-lg font-headline text-xs font-semibold transition-all ${
-                    heroView === '3d'
-                      ? 'bg-[#272923] text-white shadow-xs'
-                      : 'text-[#77776F] hover:text-[#272923]'
-                  }`}
-                >
-                  3D Sports Car
-                </button>
-                <button
-                  onClick={() => setHeroView('photo')}
-                  className={`px-3 py-1 rounded-lg font-headline text-xs font-semibold transition-all ${
-                    heroView === 'photo'
-                      ? 'bg-[#272923] text-white shadow-xs'
-                      : 'text-[#77776F] hover:text-[#272923]'
-                  }`}
-                >
-                  Photo
-                </button>
+              {/* Direct 3D Sports Car on Auto-Rotation */}
+              <div className="w-full h-full p-2">
+                <CarModelViewer
+                  autoRotate={true}
+                  className="w-full h-full"
+                />
               </div>
 
-              {heroView === '3d' ? (
-                <div className="w-full h-full p-2">
-                  <CarModelViewer
-                    autoRotate={true}
-                    className="w-full h-full"
-                  />
-                </div>
-              ) : (
-                <div className="relative w-full h-full rounded-xl overflow-hidden">
-                  <img
-                    ref={imageRef}
-                    src="https://images.unsplash.com/photo-1531415074868-036b1c57e329?auto=format&fit=crop&w=1400&q=80"
-                    alt="Athletic preparation and sports equipment in natural sunlight"
-                    className="w-full h-full object-cover object-center filter contrast-[1.02] will-change-transform"
-                    loading="eager"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
-                </div>
-              )}
-
               {/* Subtle caption pill */}
-              <div className="absolute bottom-4 left-4 px-3 py-1.5 rounded-lg bg-white/95 backdrop-blur-sm border border-[#DDD8CC] text-xs text-[#272923] font-body shadow-sm z-20">
-                {heroView === '3d'
-                  ? 'Grand Touring 3D Specimen // 360° Auto-Rotation'
-                  : 'Curated for competitive athletes & sports enthusiasts'}
+              <div className="absolute bottom-4 left-4 px-3 py-1.5 rounded-lg bg-white/95 backdrop-blur-sm border border-[#DDD8CC] text-xs text-[#272923] font-body shadow-sm z-20 pointer-events-none">
+                Grand Touring 3D Specimen // 360° Auto-Rotation
               </div>
             </div>
           </div>
