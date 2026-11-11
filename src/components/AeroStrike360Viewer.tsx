@@ -168,7 +168,7 @@ export const AeroStrike360Viewer: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             {/* Left Column: Interactive Bat Stage (7 cols) */}
             <div className="lg:col-span-7 flex flex-col gap-4">
-              <div className="relative w-full aspect-[4/5] sm:aspect-square bg-gradient-to-b from-[#FAF9F5] via-[#F4F1EA] to-[#EBE7DD] rounded-2xl border border-[#DDD8CC] p-6 sm:p-8 flex flex-col justify-between overflow-hidden shadow-[0_8px_32px_rgba(39,41,35,0.06)]">
+              <div className="relative w-full aspect-[4/5] sm:aspect-square min-h-[460px] sm:min-h-[520px] bg-gradient-to-b from-[#FAF9F5] via-[#F4F1EA] to-[#EBE7DD] rounded-2xl border border-[#DDD8CC] p-4 sm:p-6 flex flex-col justify-between overflow-hidden shadow-[0_8px_32px_rgba(39,41,35,0.06)]">
                 {/* Subtle radial spotlight overlay */}
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.7)_0%,transparent_75%)] pointer-events-none" />
 
@@ -184,7 +184,7 @@ export const AeroStrike360Viewer: React.FC = () => {
                 </div>
 
                 {/* Real 3D Cricket Model Presentation with Fallback */}
-                <div className="relative flex-1 flex flex-col items-center justify-center py-2 min-h-[300px]">
+                <div className="relative flex-1 w-full h-full flex flex-col items-center justify-center py-1">
                   <CricketModelViewer
                     rotationDeg={rotationDeg}
                     fallbackImage="https://lh3.googleusercontent.com/aida-public/AB6AXuAIpwHpkeSILKoWrlSa4ZzdnwoQC4EegQ25LhWnVuQO2NZnC1ArZrnX86w8RXD4PB8yLGaE_bFcFGrhm4n-5OhvS2-E-5HHuUjx0i0vKPwMOv6o1nVIaALPaabKTICVPmJUEG3GmckAKwr2GDQOUm0Y37U9ZBYU0TTV87s4FBkAR8fhxshdQ-wAy5XZyEm3DpUxrKMxtu4PUPS-OOm_yWJm4Q4DdbjyCm73Ca8kuzdP"
@@ -192,7 +192,7 @@ export const AeroStrike360Viewer: React.FC = () => {
                   />
 
                   {/* Metric pill */}
-                  <div className="mt-2 px-3 py-1.5 rounded-full bg-white/95 border border-[#DDD8CC] font-body text-xs text-[#77776F] shadow-sm whitespace-nowrap z-20">
+                  <div className="mt-1 px-3 py-1 rounded-full bg-white/95 border border-[#DDD8CC] font-body text-xs text-[#77776F] shadow-sm whitespace-nowrap z-20">
                     {activeProfile.metric}
                   </div>
                 </div>

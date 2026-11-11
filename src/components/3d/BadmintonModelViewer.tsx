@@ -6,12 +6,14 @@ interface BadmintonModelViewerProps {
   interactive?: boolean;
   className?: string;
   fallbackImage: string;
+  autoRotate?: boolean;
 }
 
 export const BadmintonModelViewer: React.FC<BadmintonModelViewerProps> = ({
   interactive = true,
   className = '',
   fallbackImage,
+  autoRotate = true,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -30,11 +32,12 @@ export const BadmintonModelViewer: React.FC<BadmintonModelViewerProps> = ({
 
     // 1. Scene & Camera
     const scene = new THREE.Scene();
-    const width = containerRef.current.clientWidth || 400;
-    const height = containerRef.current.clientHeight || 400;
+    const width = containerRef.current.clientWidth || 450;
+    const height = containerRef.current.clientHeight || 450;
 
-    const camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 50);
-    camera.position.set(0, 0.3, 1.4);
+    const camera = new THREE.PerspectiveCamera(36, width / height, 0.1, 50);
+    camera.position.set(0, 0.1, 1.25);
+    camera.lookAt(0, 0, 0);
 
     const renderer = new THREE.WebGLRenderer({
       canvas: canvasRef.current,
@@ -47,40 +50,38 @@ export const BadmintonModelViewer: React.FC<BadmintonModelViewerProps> = ({
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.2;
+    renderer.toneMappingExposure = 1.25;
 
     // 2. Lighting
-    const ambientLight = new THREE.AmbientLight(0xf8fbf6, 1.5);
+    const ambientLight = new THREE.AmbientLight(0xf8fbf6, 1.6);
     scene.add(ambientLight);
 
-    const keyLight = new THREE.DirectionalLight(0xffffff, 2.4);
-    keyLight.position.set(2, 3, 3);
+    const keyLight = new THREE.DirectionalLight(0xffffff, 2.6);
+    keyLight.position.set(2.5, 3.5, 3);
     keyLight.castShadow = true;
     keyLight.shadow.mapSize.width = 1024;
     keyLight.shadow.mapSize.height = 1024;
     scene.add(keyLight);
 
-    const fillLight = new THREE.DirectionalLight(0xdce6d8, 1.2);
-    fillLight.position.set(-2, 1, -1);
+    const fillLight = new THREE.DirectionalLight(0xdce6d8, 1.3);
+    fillLight.position.set(-3, 1.5, -1);
     scene.add(fillLight);
 
-    const rimLight = new THREE.DirectionalLight(0xffffff, 1.0);
-    rimLight.position.set(0, 2, -2);
+    const rimLight = new THREE.DirectionalLight(0xffffff, 1.2);
+    rimLight.position.set(0, 2.5, -2);
     scene.add(rimLight);
 
     // Ground Shadow
     const shadowGeo = new THREE.PlaneGeometry(3, 3);
-    const shadowMat = new THREE.ShadowMaterial({ opacity: 0.1 });
+    const shadowMat = new THREE.ShadowMaterial({ opacity: 0.12 });
     const shadowPlane = new THREE.Mesh(shadowGeo, shadowMat);
     shadowPlane.rotation.x = -Math.PI / 2;
-    shadowPlane.position.y = -0.32;
+    shadowPlane.position.y = -0.28;
     shadowPlane.receiveShadow = true;
     scene.add(shadowPlane);
 
     // 3. Model Group
     const modelGroup = new THREE.Group();
-    // Default initial tilt for aesthetic framing
-    modelGroup.rotation.set(-0.2, 0.4, 0.1);
     scene.add(modelGroup);
     modelGroupRef.current = modelGroup;
 
@@ -95,13 +96,16 @@ export const BadmintonModelViewer: React.FC<BadmintonModelViewerProps> = ({
 
         const root = gltf.scene;
 
-        // Center the geometry
+        // Exact centering
         const box = new THREE.Box3().setFromObject(root);
         const center = box.getCenter(new THREE.Vector3());
+        const size = box.getSize(new THREE.Vector3());
 
         root.position.x = -center.x;
         root.position.y = -center.y;
         root.position.z = -center.z;
+
+        shadowPlane.position.y = -size.y / 2 - 0.04;
 
         root.traverse((child) => {
           if ((child as THREE.Mesh).isMesh) {
@@ -110,13 +114,21 @@ export const BadmintonModelViewer: React.FC<BadmintonModelViewerProps> = ({
             mesh.receiveShadow = true;
             if (mesh.material) {
               const mat = mesh.material as THREE.MeshStandardMaterial;
-              mat.roughness = Math.max(0.2, mat.roughness ?? 0.4);
-              mat.envMapIntensity = 1.1;
+              mat.roughness = Math.max(0.18, mat.roughness ?? 0.4);
+              mat.envMapIntensity = 1.2;
             }
           }
         });
 
         modelGroup.add(root);
+
+        // Compute safe camera distance
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const fov = camera.fov * (Math.PI / 180);
+        const dist = Math.max(1.2, Math.abs(maxDim / (2 * Math.tan(fov / 2))) * 1.3);
+        camera.position.set(0, 0, dist);
+        camera.lookAt(0, 0, 0);
+
         setLoading(false);
       },
       (xhr) => {
@@ -138,6 +150,7 @@ export const BadmintonModelViewer: React.FC<BadmintonModelViewerProps> = ({
         if (w > 0 && h > 0) {
           camera.aspect = w / h;
           camera.updateProjectionMatrix();
+          camera.lookAt(0, 0, 0);
           renderer.setSize(w, h, false);
         }
       }
@@ -182,22 +195,26 @@ export const BadmintonModelViewer: React.FC<BadmintonModelViewerProps> = ({
       window.addEventListener('pointerup', handlePointerUp);
     }
 
-    // 7. Render Loop with subtle ambient floating spin
+    // 7. Render Loop with Auto-Rotation
     const animate = () => {
       if (isDisposed) return;
       animationFrameId = requestAnimationFrame(animate);
 
-      if (modelGroupRef.current && !mouseRef.current.isDragging) {
-        // Slow continuous breathing rotation
-        modelGroupRef.current.rotation.y += 0.003;
+      if (modelGroupRef.current) {
+        if (autoRotate && !mouseRef.current.isDragging) {
+          // Smooth continuous auto-rotation
+          modelGroupRef.current.rotation.y += 0.007;
+          modelGroupRef.current.position.y = Math.sin(Date.now() * 0.0015) * 0.015;
+        }
 
         // Mouse parallax
         mouseRef.current.x += (mouseRef.current.targetX - mouseRef.current.x) * 0.05;
         mouseRef.current.y += (mouseRef.current.targetY - mouseRef.current.y) * 0.05;
 
-        modelGroupRef.current.position.y = Math.sin(Date.now() * 0.0015) * 0.02;
+        modelGroupRef.current.rotation.x = -0.15 + mouseRef.current.y * 0.06;
       }
 
+      camera.lookAt(0, 0, 0);
       renderer.render(scene, camera);
     };
 
@@ -228,12 +245,12 @@ export const BadmintonModelViewer: React.FC<BadmintonModelViewerProps> = ({
       });
       renderer.dispose();
     };
-  }, [interactive]);
+  }, [interactive, autoRotate]);
 
   return (
     <div
       ref={containerRef}
-      className={`relative w-full h-full flex items-center justify-center select-none ${className}`}
+      className={`relative w-full h-full min-h-[320px] flex items-center justify-center select-none ${className}`}
     >
       <canvas
         ref={canvasRef}
@@ -252,7 +269,7 @@ export const BadmintonModelViewer: React.FC<BadmintonModelViewerProps> = ({
           {loading && !loadError && (
             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-sm border border-[#DDD8CC] text-[11px] font-mono text-[#52634B] shadow-sm">
               <span className="w-2 h-2 rounded-full bg-[#52634B] animate-pulse" />
-              <span>Loading 3D Racket Atelier ({loadProgress}%)</span>
+              <span>Loading 3D Racket ({loadProgress}%)</span>
             </div>
           )}
         </div>

@@ -7,6 +7,7 @@ interface CricketModelViewerProps {
   interactive?: boolean;
   className?: string;
   fallbackImage: string;
+  autoRotate?: boolean;
 }
 
 export const CricketModelViewer: React.FC<CricketModelViewerProps> = ({
@@ -14,6 +15,7 @@ export const CricketModelViewer: React.FC<CricketModelViewerProps> = ({
   interactive = true,
   className = '',
   fallbackImage,
+  autoRotate = false,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -21,8 +23,9 @@ export const CricketModelViewer: React.FC<CricketModelViewerProps> = ({
   const [loadProgress, setLoadProgress] = useState(0);
   const [loadError, setLoadError] = useState(false);
 
-  // References to keep across renders
   const modelGroupRef = useRef<THREE.Group | null>(null);
+  const shadowPlaneRef = useRef<THREE.Mesh | null>(null);
+  const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
   const mouseRef = useRef({ x: 0, y: 0, targetX: 0, targetY: 0, isDragging: false, prevX: 0 });
   const targetRotationRef = useRef(rotationDeg);
 
@@ -36,14 +39,16 @@ export const CricketModelViewer: React.FC<CricketModelViewerProps> = ({
     let isDisposed = false;
     let animationFrameId: number;
 
-    // 1. Scene, Camera, Renderer
+    // 1. Scene & Camera
     const scene = new THREE.Scene();
-    const width = containerRef.current.clientWidth || 400;
-    const height = containerRef.current.clientHeight || 400;
+    const width = containerRef.current.clientWidth || 450;
+    const height = containerRef.current.clientHeight || 450;
 
-    const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 50);
-    // Position camera to capture full bat, stumps, bails, and ball
-    camera.position.set(0, 0.45, 1.85);
+    // Camera with 36° FOV for flattering focal length and framing
+    const camera = new THREE.PerspectiveCamera(36, width / height, 0.1, 50);
+    camera.position.set(0, 0, 1.8);
+    camera.lookAt(0, 0, 0);
+    cameraRef.current = camera;
 
     const renderer = new THREE.WebGLRenderer({
       canvas: canvasRef.current,
@@ -56,46 +61,44 @@ export const CricketModelViewer: React.FC<CricketModelViewerProps> = ({
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.15;
+    renderer.toneMappingExposure = 1.25;
 
-    // 2. Studio Lighting (Warm Editorial Tone)
-    const ambientLight = new THREE.AmbientLight(0xfaf8f2, 1.4);
+    // 2. Studio Lighting
+    const ambientLight = new THREE.AmbientLight(0xfdfbf7, 1.6);
     scene.add(ambientLight);
 
-    // Warm Key Light
-    const keyLight = new THREE.DirectionalLight(0xfffdfa, 2.2);
-    keyLight.position.set(3, 4, 3);
+    const keyLight = new THREE.DirectionalLight(0xfffef7, 2.8);
+    keyLight.position.set(2.5, 4, 3);
     keyLight.castShadow = true;
     keyLight.shadow.mapSize.width = 1024;
     keyLight.shadow.mapSize.height = 1024;
     keyLight.shadow.bias = -0.0001;
     scene.add(keyLight);
 
-    // Soft Sage Fill Light
-    const fillLight = new THREE.DirectionalLight(0xe7ebe2, 1.2);
+    const fillLight = new THREE.DirectionalLight(0xe8eee4, 1.4);
     fillLight.position.set(-3, 2, -1);
     scene.add(fillLight);
 
-    // Rim Light for edge definition
-    const rimLight = new THREE.DirectionalLight(0xffffff, 1.0);
-    rimLight.position.set(0, 3, -3);
+    const rimLight = new THREE.DirectionalLight(0xffffff, 1.2);
+    rimLight.position.set(0, 3, -2.5);
     scene.add(rimLight);
 
-    // Soft ground shadow receiver
-    const shadowGeo = new THREE.PlaneGeometry(3, 3);
-    const shadowMat = new THREE.ShadowMaterial({ opacity: 0.12 });
+    // Ground Shadow Plane
+    const shadowGeo = new THREE.PlaneGeometry(3.5, 3.5);
+    const shadowMat = new THREE.ShadowMaterial({ opacity: 0.14 });
     const shadowPlane = new THREE.Mesh(shadowGeo, shadowMat);
     shadowPlane.rotation.x = -Math.PI / 2;
-    shadowPlane.position.y = -0.38;
+    shadowPlane.position.y = -0.4;
     shadowPlane.receiveShadow = true;
     scene.add(shadowPlane);
+    shadowPlaneRef.current = shadowPlane;
 
-    // 3. Model Container Group
+    // 3. Model Container
     const modelGroup = new THREE.Group();
     scene.add(modelGroup);
     modelGroupRef.current = modelGroup;
 
-    // 4. Lazy-load GLB when approaching view
+    // 4. Load GLB and dynamically fit camera to frame 100% of the model
     const loader = new GLTFLoader();
     const modelPath = '/models/cricket-bat-and-stumps.glb';
 
@@ -106,14 +109,19 @@ export const CricketModelViewer: React.FC<CricketModelViewerProps> = ({
 
         const root = gltf.scene;
 
-        // Calculate bounding box and center the model
+        // Accurately center the model around origin (0, 0, 0)
         const box = new THREE.Box3().setFromObject(root);
         const center = box.getCenter(new THREE.Vector3());
+        const size = box.getSize(new THREE.Vector3());
 
-        // Offset to exact center
         root.position.x = -center.x;
-        root.position.y = -center.y - 0.02;
+        root.position.y = -center.y;
         root.position.z = -center.z;
+
+        // Position shadow receiver just below the base of the stumps/bat
+        if (shadowPlaneRef.current) {
+          shadowPlaneRef.current.position.y = -size.y / 2 - 0.02;
+        }
 
         // Enable shadows and enhance materials
         root.traverse((child) => {
@@ -124,13 +132,24 @@ export const CricketModelViewer: React.FC<CricketModelViewerProps> = ({
 
             if (mesh.material) {
               const mat = mesh.material as THREE.MeshStandardMaterial;
-              mat.roughness = Math.max(0.25, mat.roughness ?? 0.5);
-              mat.envMapIntensity = 1.0;
+              mat.roughness = Math.max(0.2, mat.roughness ?? 0.5);
+              mat.envMapIntensity = 1.2;
             }
           }
         });
 
         modelGroup.add(root);
+
+        // Dynamically compute camera distance so full model fits with safe margin
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const fov = camera.fov * (Math.PI / 180);
+        let cameraDistance = Math.abs(maxDim / (2 * Math.tan(fov / 2))) * 1.35;
+
+        // Ensure minimum safe distance
+        cameraDistance = Math.max(cameraDistance, 1.55);
+        camera.position.set(0, 0, cameraDistance);
+        camera.lookAt(0, 0, 0);
+
         setLoading(false);
       },
       (xhr) => {
@@ -152,13 +171,14 @@ export const CricketModelViewer: React.FC<CricketModelViewerProps> = ({
         if (w > 0 && h > 0) {
           camera.aspect = w / h;
           camera.updateProjectionMatrix();
+          camera.lookAt(0, 0, 0);
           renderer.setSize(w, h, false);
         }
       }
     });
     resizeObserver.observe(containerRef.current);
 
-    // 6. Pointer interactions (Damped orbit & Drag)
+    // 6. Pointer interactions
     const handlePointerDown = (e: PointerEvent) => {
       mouseRef.current.isDragging = true;
       mouseRef.current.prevX = e.clientX;
@@ -191,27 +211,31 @@ export const CricketModelViewer: React.FC<CricketModelViewerProps> = ({
       window.addEventListener('pointerup', handlePointerUp);
     }
 
-    // 7. Render Loop with Damped Rotation
+    // 7. Render Loop with centering and auto-rotate / scroll rotation
     const animate = () => {
       if (isDisposed) return;
       animationFrameId = requestAnimationFrame(animate);
 
       if (modelGroupRef.current) {
-        if (!mouseRef.current.isDragging) {
+        if (autoRotate && !mouseRef.current.isDragging) {
+          // Continuous smooth auto-rotation
+          modelGroupRef.current.rotation.y += 0.006;
+        } else if (!mouseRef.current.isDragging) {
           // Smoothly lerp towards target rotation degrees from scroll / buttons
           const targetRad = (targetRotationRef.current * Math.PI) / 180;
           const diff = targetRad - modelGroupRef.current.rotation.y;
           modelGroupRef.current.rotation.y += diff * 0.08;
-
-          // Subtle mouse parallax tilt
-          mouseRef.current.x += (mouseRef.current.targetX - mouseRef.current.x) * 0.05;
-          mouseRef.current.y += (mouseRef.current.targetY - mouseRef.current.y) * 0.05;
-
-          modelGroupRef.current.rotation.x = mouseRef.current.y * 0.08;
-          modelGroupRef.current.rotation.z = -mouseRef.current.x * 0.05;
         }
+
+        // Mouse parallax tilt
+        mouseRef.current.x += (mouseRef.current.targetX - mouseRef.current.x) * 0.05;
+        mouseRef.current.y += (mouseRef.current.targetY - mouseRef.current.y) * 0.05;
+
+        modelGroupRef.current.rotation.x = mouseRef.current.y * 0.06;
+        modelGroupRef.current.rotation.z = -mouseRef.current.x * 0.04;
       }
 
+      camera.lookAt(0, 0, 0);
       renderer.render(scene, camera);
     };
 
@@ -229,7 +253,6 @@ export const CricketModelViewer: React.FC<CricketModelViewerProps> = ({
         window.removeEventListener('pointerup', handlePointerUp);
       }
 
-      // Dispose Three.js objects
       scene.traverse((obj) => {
         if ((obj as THREE.Mesh).isMesh) {
           const m = obj as THREE.Mesh;
@@ -243,12 +266,12 @@ export const CricketModelViewer: React.FC<CricketModelViewerProps> = ({
       });
       renderer.dispose();
     };
-  }, [interactive]);
+  }, [interactive, autoRotate]);
 
   return (
     <div
       ref={containerRef}
-      className={`relative w-full h-full flex items-center justify-center select-none ${className}`}
+      className={`relative w-full h-full min-h-[320px] flex items-center justify-center select-none ${className}`}
     >
       {/* 3D WebGL Canvas */}
       <canvas
