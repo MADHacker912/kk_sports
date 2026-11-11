@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import { Navigation } from './components/Navigation';
 import { HeroSection } from './components/HeroSection';
 import { BrandIntroduction } from './components/BrandIntroduction';
-import { CategoriesBento } from './components/CategoriesBento';
+import { SportsCategories } from './components/SportsCategories';
 import { ProductCatalogue } from './components/ProductCatalogue';
 import { AeroStrike360Viewer } from './components/AeroStrike360Viewer';
-import { WhyChooseKK } from './components/WhyChooseKK';
 import { KanpurFlagshipStore } from './components/KanpurFlagshipStore';
-import { WholesaleBanner } from './components/WholesaleBanner';
 import { Footer } from './components/Footer';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import { ProductDetailModal } from './components/ProductDetailModal';
@@ -19,7 +17,7 @@ export const App: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<ProductCategory>('all');
   const [searchModalOpen, setSearchModalOpen] = useState(false);
 
-  const handleSelectCategoryFromBento = (cat: ProductCategory) => {
+  const handleSelectCategory = (cat: ProductCategory) => {
     setActiveCategory(cat);
     const element = document.getElementById('featured-collection');
     if (element) {
@@ -35,46 +33,39 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-surface-container-lowest text-on-surface flex flex-col relative selection:bg-accent-lime selection:text-black">
-      {/* Top Navbar */}
+    <div className="min-h-screen bg-[#08090B] text-[#E3E2E5] flex flex-col relative selection:bg-[#C6FF35] selection:text-black">
+      {/* 1. Minimal Premium Navigation */}
       <Navigation onOpenSearch={() => setSearchModalOpen(true)} />
 
       {/* Main Content Area */}
       <main className="flex-1 w-full flex flex-col">
-        {/* Section 01: Hero */}
+        {/* 2. Strong Hero Section */}
         <HeroSection />
 
-        {/* Section 02: Brand Introduction */}
+        {/* 3. Brand Introduction */}
         <BrandIntroduction />
 
-        {/* Section 03: Shop by Category Bento */}
-        <CategoriesBento onSelectCategory={handleSelectCategoryFromBento} />
+        {/* 4. Sports Categories */}
+        <SportsCategories onSelectCategory={handleSelectCategory} />
 
-        {/* Section 04: Featured Products Catalogue */}
+        {/* 5. Featured Products */}
         <ProductCatalogue
           activeCategory={activeCategory}
           onCategoryChange={setActiveCategory}
           onSelectProduct={setSelectedProduct}
-          onOpen360={handleScrollTo360}
         />
 
-        {/* Section 05: 3D Scroll Storytelling / Aero-Strike 360 Viewer */}
+        {/* 6. One Signature Visual Storytelling Section (3D & Motion) */}
         <AeroStrike360Viewer />
 
-        {/* Section 06: Why Choose K.K. Sports */}
-        <WhyChooseKK />
-
-        {/* Section 07: Kanpur Flagship Store */}
+        {/* 7. Store Location and Contact */}
         <KanpurFlagshipStore />
-
-        {/* Section 08: Wholesale & Institutional Division */}
-        <WholesaleBanner />
       </main>
 
-      {/* Section 09: Architectural Footer */}
+      {/* 8. Minimal Footer */}
       <Footer />
 
-      {/* Persistent Floating WhatsApp CTA */}
+      {/* Discreet Floating WhatsApp Trigger */}
       <FloatingWhatsApp />
 
       {/* Product Detail Modal */}

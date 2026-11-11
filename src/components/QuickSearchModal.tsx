@@ -43,54 +43,50 @@ export const QuickSearchModal: React.FC<QuickSearchModalProps> = ({
     <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4">
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/80 backdrop-blur-md transition-opacity"
+        className="fixed inset-0 bg-black/85 backdrop-blur-sm"
         onClick={onClose}
       />
 
       {/* Search Container */}
-      <div className="relative w-full max-w-2xl bg-surface-container-low border border-cold-border rounded shadow-2xl overflow-hidden z-10">
+      <div className="relative w-full max-w-xl bg-[#101215] border border-[#232730] rounded shadow-2xl overflow-hidden z-10">
         {/* Search Input Bar */}
-        <div className="flex items-center px-4 py-3.5 bg-surface-container border-b border-cold-border gap-3">
-          <Search className="w-5 h-5 text-accent-lime shrink-0" />
+        <div className="flex items-center px-4 py-3 bg-[#15181D] border-b border-[#232730] gap-3">
+          <Search className="w-4 h-4 text-[#A1A1AA] shrink-0" />
           <input
             ref={inputRef}
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search cricket bats, footballs, rackets, gym gear, carrom..."
-            className="w-full bg-transparent text-white font-body text-sm placeholder:text-on-surface-variant focus:outline-none"
+            className="w-full bg-transparent text-white font-body text-sm placeholder:text-[#A1A1AA]/60 focus:outline-none"
           />
           {query && (
             <button
               onClick={() => setQuery('')}
-              className="text-on-surface-variant hover:text-white p-1"
+              className="text-[#A1A1AA] hover:text-white p-1"
             >
               <X className="w-4 h-4" />
             </button>
           )}
           <button
             onClick={onClose}
-            className="px-2.5 py-1 rounded bg-surface-container-high hover:bg-surface-bright text-xs font-headline uppercase tracking-wider text-on-surface-variant hover:text-white transition-colors"
+            className="px-2 py-0.5 rounded bg-[#17191D] hover:bg-[#1F2228] text-[10px] font-mono uppercase tracking-wider text-[#A1A1AA] hover:text-white transition-colors"
           >
             ESC
           </button>
         </div>
 
-        {/* Search Results Area */}
-        <div className="p-4 max-h-[60vh] overflow-y-auto flex flex-col gap-2">
-          <div className="flex items-center justify-between pb-2 border-b border-cold-border/60">
-            <span className="font-headline text-[10px] uppercase tracking-widest text-accent-lime font-bold">
-              {trimmed ? `FOUND ${filteredProducts.length} ITEMS` : 'POPULAR INVENTORY HIGHLIGHTS'}
+        {/* Results List */}
+        <div className="p-3 max-h-[55vh] overflow-y-auto flex flex-col gap-1.5">
+          <div className="flex items-center justify-between px-2 py-1">
+            <span className="font-mono text-[10px] uppercase tracking-wider text-[#A1A1AA]">
+              {trimmed ? `${filteredProducts.length} Results` : 'Recommended Products'}
             </span>
-            <span className="font-mono text-[10px] text-on-surface-variant">KANPUR FLAGSHIP</span>
           </div>
 
           {filteredProducts.length === 0 ? (
-            <div className="py-8 text-center text-on-surface-variant text-sm">
-              <p>No gear matching “{query}”.</p>
-              <p className="text-xs text-on-surface-variant/70 mt-1">
-                Try searching “Cricket”, “Football”, “Willow”, “Racket”, or “Dumbbell”.
-              </p>
+            <div className="py-8 text-center text-[#A1A1AA] text-xs">
+              <p>No products matching “{query}”.</p>
             </div>
           ) : (
             filteredProducts.map((p) => (
@@ -100,10 +96,10 @@ export const QuickSearchModal: React.FC<QuickSearchModalProps> = ({
                   onSelectProduct(p);
                   onClose();
                 }}
-                className="group flex items-center justify-between p-3 rounded bg-surface-container hover:bg-surface-bright border border-cold-border hover:border-accent-lime cursor-pointer transition-all"
+                className="group flex items-center justify-between p-2.5 rounded bg-[#15181D] hover:bg-[#1C2027] border border-[#232730] hover:border-[#A1A1AA] cursor-pointer transition-all"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded bg-surface-container-lowest p-1 flex items-center justify-center shrink-0 border border-cold-border">
+                  <div className="w-10 h-10 rounded bg-[#08090B] p-1 flex items-center justify-center shrink-0">
                     <img
                       src={p.image}
                       alt={p.name}
@@ -111,23 +107,20 @@ export const QuickSearchModal: React.FC<QuickSearchModalProps> = ({
                     />
                   </div>
                   <div>
-                    <span className="font-mono text-[10px] text-accent-lime uppercase tracking-wider block">
+                    <span className="font-mono text-[9px] text-[#A1A1AA] uppercase tracking-wider block">
                       {p.categoryLabel}
                     </span>
-                    <h4 className="font-headline text-sm uppercase text-white font-bold group-hover:text-accent-lime transition-colors">
+                    <h4 className="font-headline text-xs uppercase text-white font-bold group-hover:text-[#C6FF35] transition-colors">
                       {p.name}
                     </h4>
-                    <span className="font-body text-xs text-on-surface-variant line-clamp-1">
-                      {p.shortDesc}
-                    </span>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-2 pl-3">
-                  <span className="font-mono text-xs text-accent-lime hidden sm:inline">
+                  <span className="font-mono text-xs text-white hidden sm:inline">
                     {p.priceDisplay || 'Inquire'}
                   </span>
-                  <ArrowRight className="w-4 h-4 text-on-surface-variant group-hover:text-accent-lime group-hover:translate-x-1 transition-all" />
+                  <ArrowRight className="w-3.5 h-3.5 text-[#A1A1AA] group-hover:text-white transition-colors" />
                 </div>
               </div>
             ))

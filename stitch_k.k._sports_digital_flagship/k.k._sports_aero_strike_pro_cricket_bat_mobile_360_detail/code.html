@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-secondary-fixed-variant": "#45474b", "outline-variant": "#434934", "surface-tint": "#a3d800", "on-error": "#690005", "surface-container-low": "#1b1c1e", "outline": "#8d947a", "tertiary-container": "#dfe2ed", "on-secondary": "#2f3035", "on-tertiary-fixed": "#181c23", "surface-bright": "#38393b", "inverse-primary": "#4c6700", "on-background": "#e3e2e5", "primary-fixed-dim": "#a3d800", "secondary-fixed": "#e2e2e8", "surface-container-highest": "#343537", "surface": "#121315", "on-surface": "#e3e2e5", "primary-fixed": "#bdf529", "primary": "#ffffff", "on-tertiary": "#2c3039", "surface-container-high": "#292a2c", "secondary-fixed-dim": "#c6c6cb", "on-surface-variant": "#c3c9ae", "on-error-container": "#ffdad6", "on-tertiary-container": "#61646e", "on-primary": "#263500", "surface-container": "#1f2022", "on-secondary-fixed": "#1a1c20", "secondary": "#c6c6cb", "tertiary-fixed": "#dfe2ed", "error": "#ffb4ab", "tertiary": "#ffffff", "on-primary-container": "#516d00", "surface-variant": "#343537", "secondary-container": "#4a4b50", "error-container": "#93000a", "on-secondary-container": "#bbbbc1", "background": "#121315", "tertiary-fixed-dim": "#c3c6d1", "on-primary-fixed-variant": "#394d00", "on-primary-fixed": "#151f00", "surface-container-lowest": "#0d0e10", "on-tertiary-fixed-variant": "#43474f", "surface-dim": "#121315", "primary-container": "#bdf529", "inverse-on-surface": "#303033", "inverse-surface": "#e3e2e5" }, borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, spacing: { "gutter-mobile": "1rem", "space-md": "1rem", "space-lg": "1.5rem", "space-xl": "2.5rem", "margin-mobile": "1.25rem", "margin": "3rem", "space-sm": "0.5rem", "space-xs": "0.25rem", "gutter": "1.5rem" }, fontFamily: { "headline-lg": ["Space Grotesk"], "body-md": ["Inter"], "headline-sm": ["Space Grotesk"], "headline-md": ["Space Grotesk"], "headline-lg-mobile": ["Space Grotesk"], "headline-xl-mobile": ["Space Grotesk"], "headline-xl": ["Space Grotesk"], "body-sm": ["Inter"], "label-lg": ["Space Grotesk"], "body-lg": ["Inter"], "label-sm": ["Space Grotesk"], "label-md": ["Space Grotesk"] }, fontSize: { "headline-lg": ["40px", { lineHeight: "48px", letterSpacing: "-0.02em", fontWeight: "700" }], "body-md": ["15px", { lineHeight: "24px", letterSpacing: "0em", fontWeight: "400" }], "headline-sm": ["20px", { lineHeight: "28px", letterSpacing: "0em", fontWeight: "600" }], "headline-md": ["28px", { lineHeight: "36px", letterSpacing: "-0.01em", fontWeight: "600" }], "headline-lg-mobile": ["28px", { lineHeight: "34px", letterSpacing: "-0.01em", fontWeight: "700" }], "headline-xl-mobile": ["36px", { lineHeight: "42px", letterSpacing: "-0.02em", fontWeight: "700" }], "headline-xl": ["56px", { lineHeight: "64px", letterSpacing: "-0.03em", fontWeight: "700" }], "body-sm": ["13px", { lineHeight: "20px", letterSpacing: "0em", fontWeight: "400" }], "label-lg": ["14px", { lineHeight: "18px", letterSpacing: "0.06em", fontWeight: "600" }], "body-lg": ["18px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "400" }], "label-sm": ["10px", { lineHeight: "14px", letterSpacing: "0.1em", fontWeight: "700" }], "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.08em", fontWeight: "600" }] } } } }</script><style>@layer base{html,body{width:100%;margin:0;padding:0;min-height:100%;}body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-on-surface antialiased flex flex-col min-h-screen selection:bg-primary-container selection:text-on-primary-fixed"><header class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.25)] pt-safe"><div class="h-16 px-margin-mobile flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-xs"><button aria-label="Go Back" class="w-11 h-11 flex items-center justify-center rounded-lg bg-surface-container-high text-on-surface hover:bg-surface-container-highest transition-colors" onclick="history.back()"><span class="material-symbols-outlined text-[20px]">arrow_back</span></button><h1 class="font-headline-sm text-headline-sm uppercase text-on-surface tracking-tight truncate max-w-[190px]">Product Details</h1></div><div class="flex items-center gap-space-xs"><a aria-label="Direct Call Store" class="w-11 h-11 flex items-center justify-center rounded-lg bg-surface-container-high text-primary-fixed hover:bg-surface-container-highest transition-colors" href="tel:+919569886010"><span class="material-symbols-outlined text-[20px]">call</span></a><a aria-label="Shopping Cart" class="relative w-11 h-11 flex items-center justify-center rounded-lg bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-colors" data-path="shopping-cart" href="#"><span class="material-symbols-outlined text-[22px]">shopping_bag</span><span class="absolute top-2 right-2 min-w-[16px] h-4 px-1 rounded-full bg-primary-container text-on-primary-fixed font-label-sm text-label-sm flex items-center justify-center leading-none font-bold">3</span></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0 ml-1"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 bg-surface"><div class="flex flex-col w-full pb-28">
+<!-- Breadcrumb & Telemetry Tag -->
+<section class="px-margin-mobile pt-space-sm pb-space-xs flex flex-col gap-space-xs">
+<div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
+<span class="font-label-sm text-label-sm text-outline tracking-widest uppercase">CRICKET</span>
+<span class="text-outline text-label-sm">/</span>
+<span class="font-label-sm text-label-sm text-outline tracking-widest uppercase">ENGLISH WILLOW</span>
+<span class="text-outline text-label-sm">/</span>
+<span class="font-label-sm text-label-sm text-primary-fixed tracking-wider uppercase">KK-CK-091</span>
+</div>
+<div class="flex items-center justify-between gap-space-sm mt-0.5">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-surface-container-high text-primary-fixed font-label-sm text-label-sm tracking-wider uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-fixed animate-pulse"></span>
+        FLAGSHIP MATCH 2025 // SUSSEX GRADE-1
+      </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant tracking-wider uppercase">BATCH #KNP-882</span>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface uppercase tracking-tight mt-1">
+      AERO-STRIKE PRO GRADE-1
+    </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant -mt-1">
+      Handcrafted English Willow Match Bat · Master Bench Edition
+    </p>
+</section>
+<!-- 360° Touch Gear Inspector -->
+<section class="relative w-full mt-space-sm bg-surface-container-lowest overflow-hidden">
+<!-- Visual Stage Container -->
+<div class="relative w-full h-80 flex items-center justify-center">
+<!-- Ambient Studio Radial Glow -->
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(189,245,41,0.06)_0%,_transparent_70%)] pointer-events-none"></div>
+<!-- Main Visual Viewport with Angle States -->
+<div class="relative w-full h-full flex items-center justify-center p-space-md select-none transition-transform duration-300" id="inspector-stage">
+<img alt="Aero-Strike Pro Grade 1 Bat" class="h-full w-auto max-w-[85%] object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.8)] transition-all duration-300" data-alt="Editorial close-up of a premium English willow cricket bat on a deep dark graphite textured background, showcasing 11 straight pristine unbleached willow grains, thick 40mm power edge profile, handcrafted in Kanpur, dynamic studio rim lighting with electric lime reflections" id="inspector-image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAXJeeSy7GK0SXWNZXLURbjYeKA6btYy2OuQBeyPHuaqqAbMa-YR743tlhEmI9p4-Fnl6gr-bN2-PDAsXfomoiUn3EQ0NO56UDjBCUjpz62kTFudYjmDiQIhFulEAVaYblh7WsrbnyrlTLlhQ0wUVB-5YyHusMH9vuaWdpWZfVDkpHyN67SwnPnKiimym_5RYPHfW_e-HlRxM8nf6t2onTET6VLcTG-Fpg_EnxxmuQ"/>
+</div>
+<!-- Telemetry Floating HUD Pills -->
+<div class="absolute top-3 left-3 flex flex-col gap-1.5 pointer-events-none">
+<div class="px-2 py-1 rounded bg-surface-container-high/90 backdrop-blur-md shadow-sm">
+<p class="font-label-sm text-label-sm text-primary-fixed uppercase tracking-wider font-bold">11 STRAIGHT GRAINS</p>
+</div>
+<div class="px-2 py-1 rounded bg-surface-container-high/90 backdrop-blur-md shadow-sm">
+<p class="font-label-sm text-label-sm text-on-surface uppercase tracking-wider">40mm ACCENT EDGES</p>
+</div>
+</div>
+<div class="absolute top-3 right-3 pointer-events-none">
+<div class="px-2 py-1 rounded bg-surface-container-high/90 backdrop-blur-md shadow-sm">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">APEX: MID-TO-LOW</p>
+</div>
+</div>
+<!-- Current Scrub Angle Readout Pill -->
+<div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 px-3 py-1 rounded bg-surface-container-highest/90 backdrop-blur-md shadow-md">
+<span class="material-symbols-outlined text-[14px] text-primary-fixed">sync</span>
+<span class="font-label-sm text-label-sm text-on-surface uppercase tracking-widest" id="angle-readout">VIEW: 0° FACE PROFILE</span>
+</div>
+</div>
+<!-- Quick Angle Selector Scrub Buttons (44px min tap area) -->
+<div class="px-margin-mobile py-space-sm bg-surface-container-low flex items-center justify-between gap-1 overflow-x-auto no-scrollbar">
+<button class="angle-btn flex-1 min-h-[44px] px-2 py-1.5 rounded bg-surface-container-highest text-primary-fixed font-label-sm text-label-sm uppercase tracking-wider transition-all flex flex-col items-center justify-center" onclick="setAngle(0, '0° FACE PROFILE')" type="button">
+<span>0°</span>
+<span class="text-[9px] opacity-80">FACE</span>
+</button>
+<button class="angle-btn flex-1 min-h-[44px] px-2 py-1.5 rounded bg-surface-container text-on-surface font-label-sm text-label-sm uppercase tracking-wider transition-all flex flex-col items-center justify-center" onclick="setAngle(90, '90° SPINE AXIS')" type="button">
+<span>90°</span>
+<span class="text-[9px] opacity-80">SPINE</span>
+</button>
+<button class="angle-btn flex-1 min-h-[44px] px-2 py-1.5 rounded bg-surface-container text-on-surface font-label-sm text-label-sm uppercase tracking-wider transition-all flex flex-col items-center justify-center" onclick="setAngle(180, '180° REAR CAMBER')" type="button">
+<span>180°</span>
+<span class="text-[9px] opacity-80">BACK</span>
+</button>
+<button class="angle-btn flex-1 min-h-[44px] px-2 py-1.5 rounded bg-surface-container text-on-surface font-label-sm text-label-sm uppercase tracking-wider transition-all flex flex-col items-center justify-center" onclick="setAngle(270, '270° POWER EDGE')" type="button">
+<span>270°</span>
+<span class="text-[9px] opacity-80">EDGE</span>
+</button>
+<button class="angle-btn flex-1 min-h-[44px] px-2 py-1.5 rounded bg-surface-container text-on-surface font-label-sm text-label-sm uppercase tracking-wider transition-all flex flex-col items-center justify-center" onclick="setAngle(360, '12-PC CANE GRIP')" type="button">
+<span>TOP</span>
+<span class="text-[9px] opacity-80">GRIP</span>
+</button>
+</div>
+<!-- 4-Item Inspection Micro Thumbnail Strip -->
+<div class="px-margin-mobile py-2.5 bg-surface-container-low flex items-center gap-2 overflow-x-auto no-scrollbar">
+<div class="flex-shrink-0 w-14 h-14 rounded bg-surface-container overflow-hidden p-1 cursor-pointer flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-[20px] text-primary-fixed">sports_cricket</span>
+<span class="font-label-sm text-[9px] text-on-surface leading-tight mt-0.5">CHEVRON GRIP</span>
+</div>
+<div class="flex-shrink-0 w-14 h-14 rounded bg-surface-container overflow-hidden p-1 cursor-pointer flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant">straighten</span>
+<span class="font-label-sm text-[9px] text-on-surface leading-tight mt-0.5">SPINE RIDGE</span>
+</div>
+<div class="flex-shrink-0 w-14 h-14 rounded bg-surface-container overflow-hidden p-1 cursor-pointer flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant">shield</span>
+<span class="font-label-sm text-[9px] text-on-surface leading-tight mt-0.5">RUBBER TOE</span>
+</div>
+<div class="flex-shrink-0 w-14 h-14 rounded bg-surface-container overflow-hidden p-1 cursor-pointer flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant">verified</span>
+<span class="font-label-sm text-[9px] text-on-surface leading-tight mt-0.5">KANPUR SEAL</span>
+</div>
+</div>
+</section>
+<!-- Pricing, Discount & Availability Matrix -->
+<section class="px-margin-mobile pt-space-md pb-space-sm flex flex-col gap-space-xs">
+<div class="p-space-md rounded-lg bg-surface-container flex flex-col gap-2">
+<div class="flex items-baseline justify-between">
+<div class="flex items-baseline gap-2">
+<span class="font-headline-md text-headline-md text-on-surface font-bold">₹14,499</span>
+<span class="font-body-md text-body-md text-on-surface-variant line-through">₹16,999</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-primary-container text-on-primary-fixed font-label-md text-label-md uppercase font-bold">
+          15% OFF
+        </span>
+</div>
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant">
+<span class="text-primary-fixed-dim font-medium">You Save ₹2,500</span>
+<span class="text-right">Inclusive of GST &amp; Kanpur Bench Trial</span>
+</div>
+<div class="mt-1 pt-2 bg-surface-container-high rounded p-2 flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary-fixed">groups</span>
+<span class="font-label-sm text-label-sm text-on-surface uppercase">ACADEMY VOLUME TIER</span>
+</div>
+<a class="font-label-sm text-label-sm text-primary-fixed hover:underline flex items-center gap-0.5 uppercase" href="#academy-supply">
+          VIEW QUOTES <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Quick Caliber Configurator (Touch Friendly) -->
+<section class="px-margin-mobile py-space-sm flex flex-col gap-space-md">
+<!-- Weight Caliber Selection -->
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md uppercase tracking-wider text-on-surface font-bold">
+          1. SELECT WEIGHT CALIBER
+        </label>
+<span class="font-label-sm text-label-sm text-primary-fixed">KANPUR SCALE CERTIFIED</span>
+</div>
+<div class="grid grid-cols-1 gap-2">
+<!-- Feather -->
+<button class="caliber-opt w-full min-h-[48px] p-3 rounded-lg bg-surface-container text-left flex items-center justify-between transition-colors" onclick="selectCaliber(this, 'feather')" type="button">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface uppercase font-bold">FEATHER-LITE (2.7 – 2.8 lbs)</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">Laser fast hands • T20 slashers</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-error font-label-sm text-label-sm uppercase">2 LEFT</span>
+</button>
+<!-- Balanced (Selected) -->
+<button class="caliber-opt selected-caliber w-full min-h-[48px] p-3 rounded-lg bg-surface-container-high text-left flex items-center justify-between transition-colors" onclick="selectCaliber(this, 'balanced')" type="button">
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md text-primary-fixed uppercase font-bold">BALANCED PRO (2.8½ – 2.9½ lbs)</span>
+<span class="material-symbols-outlined text-[16px] text-primary-fixed">check_circle</span>
+</div>
+<span class="font-body-sm text-[12px] text-on-surface-variant">Recommended matchday apex</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-primary-fixed font-label-sm text-label-sm uppercase">IN STOCK</span>
+</button>
+<!-- Heavy Driver -->
+<button class="caliber-opt w-full min-h-[48px] p-3 rounded-lg bg-surface-container text-left flex items-center justify-between transition-colors" onclick="selectCaliber(this, 'heavy')" type="button">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface uppercase font-bold">HEAVY CANNON (2.10+ lbs)</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">Massive spine • Pure long boundary power</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm uppercase">BENCH READY</span>
+</button>
+</div>
+</div>
+<!-- Handle Dimensions -->
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md uppercase tracking-wider text-on-surface font-bold">
+          2. HANDLE PROFILE
+        </label>
+<span class="font-label-sm text-label-sm text-on-surface-variant">SARAWAK CANE</span>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<button class="handle-btn min-h-[44px] p-2 rounded bg-surface-container-high text-primary-fixed flex flex-col items-center justify-center text-center transition-colors" onclick="selectHandle(this)" type="button">
+<span class="font-label-md text-label-md font-bold uppercase">SH (STANDARD)</span>
+<span class="font-label-sm text-[10px] text-primary-fixed-dim">Short Handle</span>
+</button>
+<button class="handle-btn min-h-[44px] p-2 rounded bg-surface-container text-on-surface flex flex-col items-center justify-center text-center transition-colors" onclick="selectHandle(this)" type="button">
+<span class="font-label-md text-label-md font-bold uppercase">LH (+1 INCH)</span>
+<span class="font-label-sm text-[10px] text-on-surface-variant">Long Handle</span>
+</button>
+<button class="handle-btn min-h-[44px] p-2 rounded bg-surface-container text-on-surface flex flex-col items-center justify-center text-center transition-colors" onclick="selectHandle(this)" type="button">
+<span class="font-label-md text-label-md font-bold uppercase">HARROW</span>
+<span class="font-label-sm text-[10px] text-on-surface-variant">Youth Apex</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Kanpur Pro Atelier Workshop Add-ons (Interactive Checklist) -->
+<section class="px-margin-mobile py-space-sm flex flex-col gap-2">
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-primary-fixed">hardware</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface uppercase">KANPUR ATELIER SERVICES</h3>
+</div>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">OPTIONAL</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        Tuned on the historic Meston Road workshop benches before dispatch.
+      </p>
+<div class="flex flex-col gap-2 mt-1">
+<!-- Addon 1 -->
+<label class="flex items-start gap-3 p-2.5 rounded bg-surface-container cursor-pointer select-none">
+<input checked="" class="w-5 h-5 rounded mt-0.5 accent-[#bdf529]" data-cost="799" id="addon-knock" onchange="updateAddons()" type="checkbox"/>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface uppercase font-bold">Pro Machine Knocking + 5k Mallet Hits</span>
+<span class="font-label-md text-label-md text-primary-fixed font-bold">+₹799</span>
+</div>
+<p class="font-body-sm text-[12px] text-on-surface-variant mt-0.5">48hr fiber compression &amp; toe compaction</p>
+</div>
+</label>
+<!-- Addon 2 -->
+<label class="flex items-start gap-3 p-2.5 rounded bg-surface-container cursor-pointer select-none">
+<input checked="" class="w-5 h-5 rounded mt-0.5 accent-[#bdf529]" data-cost="399" id="addon-oil" onchange="updateAddons()" type="checkbox"/>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface uppercase font-bold">Linseed Infusion &amp; Clear Edge Shield</span>
+<span class="font-label-md text-label-md text-primary-fixed font-bold">+₹399</span>
+</div>
+<p class="font-body-sm text-[12px] text-on-surface-variant mt-0.5">Double raw oil dip + heavy duty scuff laminate</p>
+</div>
+</label>
+<!-- Addon 3 -->
+<label class="flex items-start gap-3 p-2.5 rounded bg-surface-container cursor-pointer select-none">
+<input class="w-5 h-5 rounded mt-0.5 accent-[#bdf529]" data-cost="499" id="addon-engrave" onchange="updateAddons()" type="checkbox"/>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface uppercase font-bold">Custom Laser Signature &amp; Match No.</span>
+<span class="font-label-md text-label-md text-primary-fixed font-bold">+₹499</span>
+</div>
+<p class="font-body-sm text-[12px] text-on-surface-variant mt-0.5">High-precision laser deep-burn on spine shoulder</p>
+</div>
+</label>
+</div>
+<!-- Workshop Subtotal Readout -->
+<div class="pt-2 flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span class="uppercase">Selected Workshop Additions</span>
+<span class="font-label-md text-label-md text-primary-fixed font-bold" id="addon-total-badge">+₹1,198</span>
+</div>
+</div>
+</section>
+<!-- Surgical Engineering Technical Specs (Accordion) -->
+<section class="px-margin-mobile py-space-sm flex flex-col gap-2">
+<div class="flex items-center justify-between mb-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-tight">ENGINEERING BLUEPRINT</h3>
+<span class="font-label-sm text-label-sm text-primary-fixed uppercase tracking-wider">SUSSEX 2025</span>
+</div>
+<!-- Spec item 1 -->
+<details class="group rounded-lg bg-surface-container overflow-hidden" open="">
+<summary class="min-h-[48px] px-space-md py-3 flex items-center justify-between cursor-pointer list-none select-none">
+<span class="font-label-md text-label-md text-on-surface uppercase font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary-fixed">nature</span>
+          WILLOW PROVENANCE &amp; MOISTURE
+        </span>
+<span class="material-symbols-outlined text-on-surface-variant transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-space-md pb-4 pt-1 flex flex-col gap-2 text-body-sm text-on-surface-variant bg-surface-container-high/40">
+<p>100% Unbleached Sussex Grade-1 English Willow cleft, air dried naturally for 180 days under controlled barometric pressure.</p>
+<div class="grid grid-cols-2 gap-2 mt-1">
+<div class="p-2 rounded bg-surface-container-low">
+<span class="font-label-sm text-[10px] text-outline uppercase block">MOISTURE LOCK</span>
+<span class="font-headline-sm text-label-lg text-primary-fixed">10.5% CELLULAR</span>
+</div>
+<div class="p-2 rounded bg-surface-container-low">
+<span class="font-label-sm text-[10px] text-outline uppercase block">GRAIN PURITY</span>
+<span class="font-headline-sm text-label-lg text-on-surface">11 PARALLEL</span>
+</div>
+</div>
+</div>
+</details>
+<!-- Spec item 2 -->
+<details class="group rounded-lg bg-surface-container overflow-hidden">
+<summary class="min-h-[48px] px-space-md py-3 flex items-center justify-between cursor-pointer list-none select-none">
+<span class="font-label-md text-label-md text-on-surface uppercase font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary-fixed">speed</span>
+          PICK-UP BALANCE &amp; TOPOLOGY
+        </span>
+<span class="material-symbols-outlined text-on-surface-variant transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-space-md pb-4 pt-1 flex flex-col gap-2 text-body-sm text-on-surface-variant bg-surface-container-high/40">
+<p>Duckbill aerodynamic profile engineered to redistribute dead weight towards the critical driving apex without reducing edge thickness.</p>
+<div class="flex items-center justify-between p-2 rounded bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface uppercase">PICK-UP DYNAMICS RATING</span>
+<span class="font-label-md text-label-md text-primary-fixed font-bold">9.8 / 10.0</span>
+</div>
+</div>
+</details>
+<!-- Spec item 3 -->
+<details class="group rounded-lg bg-surface-container overflow-hidden">
+<summary class="min-h-[48px] px-space-md py-3 flex items-center justify-between cursor-pointer list-none select-none">
+<span class="font-label-md text-label-md text-on-surface uppercase font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary-fixed">vibration</span>
+          SARAWAK 12-PIECE CANE MATRIX
+        </span>
+<span class="material-symbols-outlined text-on-surface-variant transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-space-md pb-4 pt-1 flex flex-col gap-2 text-body-sm text-on-surface-variant bg-surface-container-high/40">
+<p>Hand-laminated Sarawak cane segments interleaved with 3 specialized natural rubber dampers to eliminate 145km/h stings on off-center mis-hits.</p>
+</div>
+</details>
+<!-- Spec item 4 -->
+<details class="group rounded-lg bg-surface-container overflow-hidden">
+<summary class="min-h-[48px] px-space-md py-3 flex items-center justify-between cursor-pointer list-none select-none">
+<span class="font-label-md text-label-md text-on-surface uppercase font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary-fixed">grass</span>
+          SURFACE &amp; PITCH COMPATIBILITY
+        </span>
+<span class="material-symbols-outlined text-on-surface-variant transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-space-md pb-4 pt-1 flex flex-col gap-2 text-body-sm text-on-surface-variant bg-surface-container-high/40">
+<p>Hardened vulcanized toe dam prevents moisture seep on wet dewy outfields, clay surfaces, and concrete nets.</p>
+</div>
+</details>
+</section>
+<!-- Kanpur Master Craftsmen Card -->
+<section class="px-margin-mobile py-space-sm">
+<div class="p-space-md rounded-lg bg-surface-container-high flex flex-col gap-3 relative overflow-hidden">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary-fixed uppercase tracking-wider font-bold">KANPUR ATELIER SINCE 1982</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface uppercase mt-0.5">MESTON ROAD BENCH CRAFT</h3>
+</div>
+<div class="w-10 h-10 rounded bg-surface-container-highest flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary-fixed text-[24px]">verified_user</span>
+</div>
+</div>
+<div class="relative w-full h-32 rounded bg-surface-container overflow-hidden">
+<img alt="Kanpur Master Craftsman Workshop" class="w-full h-full object-cover" data-alt="Black and white high-contrast workshop photo of a senior craftsman hand carving an English willow cricket bat using traditional drawknives in Kanpur India, wood shavings on workbench, focused intense lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcA7vaqoOl2cwKcorS7ghcDPH5Yp-AYWRCX3v02GLPH7P-cAjF-DXesM29xAFmHjiZJUN-w4bBowoVm-PQ0Tb1E3cfVRcNo9HrytXJHse67rU377DGbhHCMTpMVck1Tg0UMYXTK4dG9qNIb4o0zRKaGGq3l_X5B2kkrO1pRUsrYtV9MDJPN3ogGJ_3WKgdrNH0chTB_ZKQDOYqrwND_krvSREtU8APDEoNbGiuuEsh"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-high via-transparent to-transparent"></div>
+<span class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-surface-container-lowest/80 backdrop-blur-sm font-label-sm text-[10px] text-on-surface uppercase">
+          PARADE WORKBENCH #04
+        </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        Every Aero-Strike bat passes through master shaper Haji Saab's 42-point balance calibration before receiving its official wax stamp.
+      </p>
+<div class="grid grid-cols-2 gap-2 pt-1">
+<div class="p-2 rounded bg-surface-container">
+<span class="font-label-sm text-[10px] text-outline uppercase block">BATS SHAPED</span>
+<span class="font-headline-sm text-label-lg text-on-surface">5,000+ / YR</span>
+</div>
+<div class="p-2 rounded bg-surface-container">
+<span class="font-label-sm text-[10px] text-outline uppercase block">LINSEED CURING</span>
+<span class="font-headline-sm text-label-lg text-primary-fixed">48 HOURS</span>
+</div>
+</div>
+<a class="mt-1 w-full min-h-[44px] py-2.5 px-3 rounded bg-surface-container-highest hover:bg-surface-bright text-on-surface font-label-sm text-label-sm uppercase tracking-wider flex items-center justify-center gap-2 transition-colors" href="tel:+919569886010">
+<span class="material-symbols-outlined text-[18px] text-primary-fixed">store</span>
+        BOOK BENCH FITTING AT KANPUR STORE
+      </a>
+</div>
+</section>
+<!-- Tiered Academy Bulk Supply Banner -->
+<section class="px-margin-mobile py-space-sm" id="academy-supply">
+<div class="p-space-md rounded-lg bg-surface-container-lowest flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[20px] text-primary-fixed">shield_with_heart</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface uppercase">SQUAD SUPPLY PROGRAM</h4>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-container-high font-label-sm text-[10px] text-primary-fixed uppercase font-bold">2025 BCCI POOL</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        Special institutional contracts for cricket academies, corporate clubs, and state teams.
+      </p>
+<!-- Tier Cards -->
+<div class="grid grid-cols-3 gap-2 mt-1">
+<div class="p-2 rounded bg-surface-container text-center flex flex-col justify-between">
+<span class="font-label-sm text-[10px] text-outline uppercase font-bold">1–4 BATS</span>
+<span class="font-headline-sm text-label-md text-on-surface mt-1">₹14,499</span>
+<span class="font-label-sm text-[9px] text-on-surface-variant uppercase mt-1">STANDARD</span>
+</div>
+<div class="p-2 rounded bg-surface-container-high text-center flex flex-col justify-between">
+<span class="font-label-sm text-[10px] text-primary-fixed uppercase font-bold">5–9 BATS</span>
+<span class="font-headline-sm text-label-md text-primary-fixed mt-1">₹12,850</span>
+<span class="font-label-sm text-[9px] text-primary-fixed uppercase mt-1">SAVE 11%</span>
+</div>
+<div class="p-2 rounded bg-surface-container text-center flex flex-col justify-between">
+<span class="font-label-sm text-[10px] text-outline uppercase font-bold">10+ BATS</span>
+<span class="font-headline-sm text-label-md text-on-surface mt-1">₹11,499</span>
+<span class="font-label-sm text-[9px] text-primary-fixed uppercase mt-1">SAVE 20%</span>
+</div>
+</div>
+<!-- Quick WhatsApp/Call CTA -->
+<a class="w-full min-h-[44px] py-2 px-3 rounded bg-surface-container-high hover:bg-surface-container-highest text-primary-fixed font-label-sm text-label-sm uppercase tracking-wider flex items-center justify-center gap-2 transition-colors" href="https://wa.me/919569886010?text=I%20am%20interested%20in%20Aero-Strike%20Squad%20Bulk%20Pack" target="_blank">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+        INSTANT ACADEMY INQUIRY (+91 9569886010)
+      </a>
+</div>
+</section>
+<!-- Related Matchday Loadout (Horizontal Scroll Carousel) -->
+<section class="py-space-sm flex flex-col gap-2">
+<div class="px-margin-mobile flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-tight">COMPLETE MATCHDAY KIT</h3>
+<span class="font-label-sm text-label-sm text-primary-fixed uppercase">SWIPE →</span>
+</div>
+<div class="flex gap-3 overflow-x-auto no-scrollbar px-margin-mobile pt-1 pb-2">
+<!-- Related 1 -->
+<div class="flex-shrink-0 w-44 rounded-lg bg-surface-container p-2 flex flex-col gap-2">
+<div class="w-full h-32 rounded bg-surface-container-lowest overflow-hidden flex items-center justify-center p-2">
+<img alt="Aero-Guard Leg Pads" class="h-full w-auto object-contain" data-alt="Top tier lightweight cricket batting leg guards in matte graphite and electric lime accents, high density foam front shot on dark backdrop" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCteKucxpSSEDpgnEw6cOBY0-V9h1F4HYVAsPjynRPnporaocy13kaxXvRJ6q_aPbpY4KDV7OxwvLoGxKYyT50eWpStSKcl5w0f1s1s40_YXiAhFa3J33WNw8nWAZlUlDZODW4VRlH6lAZ_KS3M8oMOlyDHjaxnm5Rki08QDyxElAajh8Pm7azmfdZ_F9B3XA2w5MuRX034HFEd-vhmMMdllYXK6As-WZNKEbZlES_7"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-[10px] text-outline uppercase font-bold">LEAD PROFILE</span>
+<h5 class="font-label-md text-label-md text-on-surface truncate uppercase mt-0.5">AERO-GUARD LEG PADS</h5>
+<span class="font-headline-sm text-label-lg text-primary-fixed mt-1">₹4,150</span>
+</div>
+<button class="w-full min-h-[44px] py-1.5 px-2 rounded bg-surface-container-high text-on-surface hover:text-primary-fixed font-label-sm text-label-sm uppercase flex items-center justify-center gap-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">add</span> ADD KIT
+        </button>
+</div>
+<!-- Related 2 -->
+<div class="flex-shrink-0 w-44 rounded-lg bg-surface-container p-2 flex flex-col gap-2">
+<div class="w-full h-32 rounded bg-surface-container-lowest overflow-hidden flex items-center justify-center p-2">
+<img alt="Viper Pro Batting Gloves" class="h-full w-auto object-contain" data-alt="Premium professional cricket batting gloves with split finger shark tooth armor and sheepskin palm on graphite background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDG68h-5v9fx3MeOH9klzwB1uKJU9p2LPRzZ0Kp_UCwnHrTggzZLxKXcQKqlbIi4OUN3Hd_k0r0JioJAeIBda0jSHHwCCC3OLKqSnBZMI_iLi-0ErPaklEpev8xRFxEmmlUJFOF6u821DnLqOtDPStgGaCqdSlRzqIdnUNgyA7_ZStR_jtuwv-CO0rnhiDDPBQyw-3qrQ76cTULeZeHIUV6jH4DgvEZZV11iHLR4B7A"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-[10px] text-outline uppercase font-bold">PITTARDS PALM</span>
+<h5 class="font-label-md text-label-md text-on-surface truncate uppercase mt-0.5">VIPER PRO GLOVES</h5>
+<span class="font-headline-sm text-label-lg text-primary-fixed mt-1">₹2,899</span>
+</div>
+<button class="w-full min-h-[44px] py-1.5 px-2 rounded bg-surface-container-high text-on-surface hover:text-primary-fixed font-label-sm text-label-sm uppercase flex items-center justify-center gap-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">add</span> ADD KIT
+        </button>
+</div>
+<!-- Related 3 -->
+<div class="flex-shrink-0 w-44 rounded-lg bg-surface-container p-2 flex flex-col gap-2">
+<div class="w-full h-32 rounded bg-surface-container-lowest overflow-hidden flex items-center justify-center p-2">
+<img alt="Vortex Match Leather Ball" class="h-full w-auto object-contain" data-alt="Official 4-piece leather cricket match ball in crimson red with dark lacquered finish and white linen stitching on graphite surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLcVyLzPgc0e0MHuc-EYAippiWWN7ACPha9sY0LbnoNPsRwoR8GUFlcpgcIsPmYokiuxZtXEkDoZfJk_lugMxM5xNHJkV42pGMi1aj2i-JAQHYngAvNA4IVjo9sN38khwo31yjTydAB9aAt64nwNKlZ4oxBSubwXAWvjkFk1fus3ABCC4Q1igQnd3Co-FZH5HSLAB5mEHiwvYRz_lUER2qgF-CTQaYp8vAtp6gaKaM"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-[10px] text-outline uppercase font-bold">80-OVER ALUM TANNED</span>
+<h5 class="font-label-md text-label-md text-on-surface truncate uppercase mt-0.5">VORTEX RED LEATHER (BOX)</h5>
+<span class="font-headline-sm text-label-lg text-primary-fixed mt-1">₹3,299</span>
+</div>
+<button class="w-full min-h-[44px] py-1.5 px-2 rounded bg-surface-container-high text-on-surface hover:text-primary-fixed font-label-sm text-label-sm uppercase flex items-center justify-center gap-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">add</span> ADD KIT
+        </button>
+</div>
+<!-- Related 4 -->
+<div class="flex-shrink-0 w-44 rounded-lg bg-surface-container p-2 flex flex-col gap-2">
+<div class="w-full h-32 rounded bg-surface-container-lowest overflow-hidden flex items-center justify-center p-2">
+<img alt="Tour Pro Stand-Up Wheelie Bag" class="h-full w-auto object-contain" data-alt="Heavy duty cricket kit bag wheelie with heavy duty all-terrain wheels and bat cave side compartment on dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASxb-gWHGnrFDBHFQsgFhblU-HKYBw1qtlFulv4h272jV-0JWRpgeR-ILOztddF7QTMWEg6gLK5yQkVdMaxgslM0yfN8frXSGrk_lL7GRdBlyuO1OuhUOY19I2kPEk-uH8_emBXdVEx4VtUXogjXUqLmo2ox6ON28pR0gFe9UE5F2Ggvk0bsupkE0LZWRuIS9G_JjTyooAqeuZuJS7ivM5gYoUdT0DF40wAp68RJPp"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-[10px] text-outline uppercase font-bold">CORDURA RIPSTOP</span>
+<h5 class="font-label-md text-label-md text-on-surface truncate uppercase mt-0.5">TOUR STAND-UP WHEELIE</h5>
+<span class="font-headline-sm text-label-lg text-primary-fixed mt-1">₹5,499</span>
+</div>
+<button class="w-full min-h-[44px] py-1.5 px-2 rounded bg-surface-container-high text-on-surface hover:text-primary-fixed font-label-sm text-label-sm uppercase flex items-center justify-center gap-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">add</span> ADD KIT
+        </button>
+</div>
+</div>
+</section>
+<!-- Sticky Bottom Floating Mobile Action Bar (PDP Critical) -->
+<div class="fixed bottom-0 left-0 right-0 z-40 bg-surface/95 backdrop-blur-xl pb-safe px-margin-mobile pt-2.5 pb-3 shadow-[0_-4px_20px_rgba(0,0,0,0.6)]">
+<div class="flex items-center gap-3">
+<!-- Left: Total Computation -->
+<div class="flex flex-col min-w-0 flex-shrink-0">
+<div class="flex items-center gap-1">
+<span class="font-label-sm text-[10px] text-on-surface-variant uppercase">CONFIGURED:</span>
+<span class="inline-block w-2 h-2 rounded-full bg-primary-fixed animate-ping"></span>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="font-headline-md text-[24px] text-on-surface font-bold leading-tight" id="final-total">₹15,697</span>
+</div>
+<span class="font-label-sm text-[9px] text-primary-fixed-dim uppercase tracking-wider">DISPATCH: 24-48 HRS</span>
+</div>
+<!-- Right: Main Call to Action Button with Haptic Feel -->
+<button class="flex-1 min-h-[48px] px-4 py-3 rounded bg-primary-container hover:bg-primary-fixed active:scale-[0.98] text-on-primary-fixed font-headline-sm text-label-lg uppercase tracking-wider font-bold flex items-center justify-center gap-2 shadow-[0_0_24px_rgba(189,245,41,0.25)] transition-all" id="cta-add-to-cart" onclick="handleAddToCart(this)" type="button">
+<span class="material-symbols-outlined text-[20px]">shopping_cart_checkout</span>
+<span id="cta-text">ADD TO CART</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Client-side PDP Micro-Interactions -->
+<script>
+  // 360 Degree Inspector Angle Scrubbing
+  function setAngle(deg, label) {
+    const readout = document.getElementById('angle-readout');
+    const stage = document.getElementById('inspector-stage');
+    const buttons = document.querySelectorAll('.angle-btn');
+    
+    if (readout) readout.innerText = 'VIEW: ' + label;
+    
+    // Tactile button switch
+    buttons.forEach(btn => {
+      btn.classList.remove('bg-surface-container-highest', 'text-primary-fixed');
+      btn.classList.add('bg-surface-container', 'text-on-surface');
+    });
+
+    event.currentTarget.classList.remove('bg-surface-container', 'text-on-surface');
+    event.currentTarget.classList.add('bg-surface-container-highest', 'text-primary-fixed');
+
+    // Subtle 3D transform simulation on the stage
+    if (stage) {
+      if (deg === 0) stage.style.transform = 'rotateY(0deg) scale(1)';
+      else if (deg === 90) stage.style.transform = 'rotateY(-25deg) scale(0.96)';
+      else if (deg === 180) stage.style.transform = 'rotateY(180deg) scale(0.98)';
+      else if (deg === 270) stage.style.transform = 'rotateY(25deg) scale(0.96)';
+      else if (deg === 360) stage.style.transform = 'rotateX(30deg) scale(1.05)';
+    }
+  }
+
+  // Weight Caliber Selection
+  function selectCaliber(element, type) {
+    const items = document.querySelectorAll('.caliber-opt');
+    items.forEach(el => {
+      el.classList.remove('bg-surface-container-high');
+      el.classList.add('bg-surface-container');
+      const icon = el.querySelector('.material-symbols-outlined');
+      if (icon) icon.remove();
+    });
+
+    element.classList.remove('bg-surface-container');
+    element.classList.add('bg-surface-container-high');
+    
+    const titleSpan = element.querySelector('.font-label-md');
+    if (titleSpan && !titleSpan.querySelector('.material-symbols-outlined')) {
+      const check = document.createElement('span');
+      check.className = 'material-symbols-outlined text-[16px] text-primary-fixed ml-1 inline-block align-middle';
+      check.innerText = 'check_circle';
+      titleSpan.appendChild(check);
+    }
+  }
+
+  // Handle Dimensions Selection
+  function selectHandle(element) {
+    const buttons = document.querySelectorAll('.handle-btn');
+    buttons.forEach(b => {
+      b.classList.remove('bg-surface-container-high', 'text-primary-fixed');
+      b.classList.add('bg-surface-container', 'text-on-surface');
+      const sub = b.querySelector('span:last-child');
+      if (sub) {
+        sub.classList.remove('text-primary-fixed-dim');
+        sub.classList.add('text-on-surface-variant');
+      }
+    });
+
+    element.classList.remove('bg-surface-container', 'text-on-surface');
+    element.classList.add('bg-surface-container-high', 'text-primary-fixed');
+    const activeSub = element.querySelector('span:last-child');
+    if (activeSub) {
+      activeSub.classList.remove('text-on-surface-variant');
+      activeSub.classList.add('text-primary-fixed-dim');
+    }
+  }
+
+  // Workshop Add-on Dynamic Recalculation
+  function updateAddons() {
+    const basePrice = 14499;
+    const checkboxes = [
+      document.getElementById('addon-knock'),
+      document.getElementById('addon-oil'),
+      document.getElementById('addon-engrave')
+    ];
+
+    let addonsSum = 0;
+    checkboxes.forEach(cb => {
+      if (cb && cb.checked) {
+        addonsSum += parseInt(cb.getAttribute('data-cost') || '0', 10);
+      }
+    });
+
+    const finalTotal = basePrice + addonsSum;
+    const badge = document.getElementById('addon-total-badge');
+    const totalEl = document.getElementById('final-total');
+
+    if (badge) badge.innerText = '+₹' + addonsSum.toLocaleString('en-IN');
+    if (totalEl) totalEl.innerText = '₹' + finalTotal.toLocaleString('en-IN');
+  }
+
+  // Add to Cart Micro-interaction
+  function handleAddToCart(btn) {
+    const label = document.getElementById('cta-text');
+    if (!label) return;
+
+    const originalText = label.innerText;
+    label.innerText = 'TUNED & ADDED!';
+    btn.classList.add('brightness-110');
+
+    setTimeout(() => {
+      label.innerText = originalText;
+      btn.classList.remove('brightness-110');
+    }, 1800);
+  }
+
+  // Initialize total once loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    updateAddons();
+  });
+</script></main></body></html>

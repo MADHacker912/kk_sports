@@ -12,7 +12,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenSearch }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 30);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
@@ -21,174 +21,151 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenSearch }) => {
   const navLinks = [
     { name: 'COLLECTION', href: '#featured-collection' },
     { name: 'CRICKET 360°', href: '#aero-strike-360' },
-    { name: 'CATEGORIES', href: '#categories-grid' },
-    { name: 'HERITAGE & WHY', href: '#why-choose-us' },
-    { name: 'KANPUR STORE', href: '#kanpur-flagship' },
-    { name: 'WHOLESALE & B2B', href: '#wholesale-institutional' },
+    { name: 'CATEGORIES', href: '#sports-categories' },
+    { name: 'ABOUT', href: '#brand-introduction' },
+    { name: 'KANPUR STORE', href: '#store-location' },
   ];
-
-  const handleLinkClick = () => {
-    setMobileMenuOpen(false);
-  };
 
   return (
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'bg-surface-container-lowest/95 backdrop-blur-xl border-b border-cold-border shadow-[0_4px_24px_rgba(0,0,0,0.6)]'
-            : 'bg-surface-container-lowest/80 backdrop-blur-md border-b border-cold-border/60'
+            ? 'bg-[#08090B]/95 backdrop-blur-md border-b border-[#1F2228] py-4'
+            : 'bg-transparent border-b border-transparent py-5 sm:py-6'
         }`}
       >
-        <div className="h-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
-          {/* Brand Logo & Title */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
+          {/* Minimal Wordmark */}
           <a
             href="#"
-            className="flex items-center gap-3 shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent-lime rounded"
+            className="flex items-center gap-3 group focus-visible:outline-none"
           >
-            <div className="w-10 h-10 rounded bg-surface-container-high border border-cold-border flex items-center justify-center font-headline font-bold text-accent-lime text-xl tracking-tighter">
-              KK
-            </div>
             <div className="flex flex-col">
-              <span className="font-headline text-lg sm:text-xl font-bold uppercase tracking-tight text-white leading-none">
-                K.K. Sports
+              <span className="font-headline text-lg sm:text-xl font-bold tracking-tight text-white uppercase group-hover:text-[#C6FF35] transition-colors leading-none">
+                K.K. SPORTS
               </span>
-              <span className="font-headline text-[10px] sm:text-[11px] uppercase tracking-widest text-on-surface-variant leading-none mt-1">
-                Games &amp; Toys • Kanpur
+              <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-[#A1A1AA] mt-1">
+                KANPUR • EST. PARADE
               </span>
             </div>
           </a>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden xl:flex items-center gap-6" aria-label="Main Navigation">
+          {/* Desktop Links (Clean Editorial Spacing) */}
+          <nav className="hidden lg:flex items-center gap-8" aria-label="Main Navigation">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="font-headline text-xs uppercase tracking-wider text-on-surface-variant hover:text-white transition-colors py-2 relative group focus-visible:outline-none focus-visible:text-accent-lime"
+                className="font-headline text-xs uppercase tracking-wider text-[#A1A1AA] hover:text-white transition-colors"
               >
                 {link.name}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent-lime transition-all duration-300 group-hover:w-full" />
               </a>
             ))}
           </nav>
 
           {/* Right Action Cluster */}
-          <div className="flex items-center gap-3 shrink-0">
-            {/* Live Store Status Indicator */}
-            <div className="hidden lg:flex items-center gap-2 px-3 py-1 rounded bg-surface-container border border-cold-border">
-              <span className="w-2 h-2 rounded-full bg-accent-lime animate-pulse shadow-[0_0_8px_#C6FF35]" />
-              <span className="font-headline text-[10px] uppercase tracking-wider text-white">
-                MESTON RD • OPEN
-              </span>
-            </div>
-
+          <div className="flex items-center gap-3">
             {/* Search Trigger */}
             <button
               onClick={onOpenSearch}
-              aria-label="Search Products"
-              className="p-2 text-on-surface-variant hover:text-white transition-colors flex items-center justify-center rounded hover:bg-surface-container"
+              aria-label="Search Catalog"
+              className="p-2 text-[#A1A1AA] hover:text-white transition-colors rounded hover:bg-[#17191D]"
             >
-              <Search className="w-5 h-5" />
+              <Search className="w-4 h-4" />
             </button>
 
-            {/* Quick Phone Call Button */}
+            {/* Direct Phone Call */}
             <a
               href={`tel:${DISPLAY_PHONE.replace(/\s+/g, '')}`}
-              className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded bg-surface-container hover:bg-surface-bright text-white font-headline text-xs tracking-wider border border-cold-border hover:border-accent-lime transition-colors"
+              className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded bg-[#17191D] hover:bg-[#1F2228] border border-[#2C3038] text-white font-headline text-xs tracking-wider transition-colors"
             >
-              <Phone className="w-3.5 h-3.5 text-accent-lime" />
+              <Phone className="w-3.5 h-3.5 text-[#C6FF35]" />
               <span>{DISPLAY_PHONE}</span>
             </a>
 
-            {/* WhatsApp Quick CTA */}
+            {/* WhatsApp Direct CTA */}
             <a
               href={getGeneralInquiryUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded bg-accent-lime text-black font-headline text-xs font-bold uppercase tracking-wider hover:brightness-110 shadow-[0_0_15px_rgba(198,255,53,0.2)] transition-all"
+              className="hidden sm:flex items-center gap-1.5 px-3.5 py-1.5 rounded bg-white hover:bg-[#C6FF35] text-black font-headline text-xs font-bold uppercase tracking-wider transition-all"
             >
               <MessageSquare className="w-3.5 h-3.5" />
-              <span>Chat</span>
+              <span>Inquire</span>
             </a>
 
-            {/* Mobile Hamburger Button */}
+            {/* Mobile Hamburger Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Toggle Mobile Menu"
+              aria-label="Toggle Menu"
               aria-expanded={mobileMenuOpen}
-              className="xl:hidden p-2 text-white hover:text-accent-lime transition-colors rounded hover:bg-surface-container"
+              className="lg:hidden p-2 text-white hover:text-[#C6FF35] transition-colors"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
       </header>
 
-      {/* Mobile Drawer Navigation */}
+      {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 xl:hidden">
-          {/* Overlay backdrop */}
+        <div className="fixed inset-0 z-40 lg:hidden">
           <div
-            className="fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity"
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm"
             onClick={() => setMobileMenuOpen(false)}
           />
 
-          {/* Drawer Content */}
-          <div className="fixed top-20 right-0 bottom-0 w-full max-w-sm bg-surface-container-low border-l border-cold-border p-6 flex flex-col justify-between overflow-y-auto shadow-2xl">
-            <div className="flex flex-col gap-6">
-              {/* Store status in mobile drawer */}
-              <div className="flex items-center justify-between p-3 rounded bg-surface-container border border-cold-border">
-                <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-accent-lime animate-pulse" />
-                  <span className="font-headline text-xs uppercase font-bold text-white">
-                    KANPUR STORE OPEN TODAY
-                  </span>
-                </div>
-                <span className="font-mono text-[10px] text-on-surface-variant">10 AM – 9 PM</span>
+          <div className="fixed top-0 right-0 bottom-0 w-full max-w-xs bg-[#0D0E11] border-l border-[#2C3038] p-6 flex flex-col justify-between overflow-y-auto">
+            <div className="flex flex-col gap-8">
+              <div className="flex items-center justify-between pt-2">
+                <span className="font-headline text-base uppercase font-bold text-white tracking-wider">
+                  K.K. SPORTS
+                </span>
+                <button
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="p-1 text-[#A1A1AA] hover:text-white"
+                >
+                  <X className="w-5 h-5" />
+                </button>
               </div>
 
-              {/* Navigation links */}
-              <nav className="flex flex-col gap-2">
-                <span className="font-headline text-[10px] uppercase tracking-widest text-accent-lime mb-1">
-                  SECTIONS &amp; DEPARTMENTS
-                </span>
+              <nav className="flex flex-col gap-4">
                 {navLinks.map((link) => (
                   <a
                     key={link.name}
                     href={link.href}
-                    onClick={handleLinkClick}
-                    className="flex items-center justify-between p-3 rounded bg-surface-container/60 hover:bg-surface-container border border-cold-border/50 text-white font-headline text-sm uppercase tracking-wider transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center justify-between py-2 text-white font-headline text-sm uppercase tracking-wider hover:text-[#C6FF35] border-b border-[#1F2228] transition-colors"
                   >
                     <span>{link.name}</span>
-                    <ArrowUpRight className="w-4 h-4 text-accent-lime" />
+                    <ArrowUpRight className="w-4 h-4 text-[#A1A1AA]" />
                   </a>
                 ))}
               </nav>
             </div>
 
-            {/* Bottom Actions inside drawer */}
-            <div className="flex flex-col gap-3 pt-6 border-t border-cold-border">
+            <div className="flex flex-col gap-3 pt-6 border-t border-[#1F2228]">
               <a
                 href={getGeneralInquiryUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3 px-4 rounded bg-accent-lime text-black font-headline text-xs uppercase tracking-wider font-bold flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(198,255,53,0.25)]"
+                className="w-full py-3 px-4 rounded bg-[#C6FF35] text-black font-headline text-xs uppercase tracking-wider font-bold flex items-center justify-center gap-2 text-center"
               >
                 <MessageSquare className="w-4 h-4" />
-                <span>INQUIRE VIA WHATSAPP</span>
+                <span>CHAT ON WHATSAPP</span>
               </a>
 
               <a
                 href={`tel:${DISPLAY_PHONE.replace(/\s+/g, '')}`}
-                className="w-full py-3 px-4 rounded bg-surface-container hover:bg-surface-bright border border-cold-border text-white font-headline text-xs uppercase tracking-wider flex items-center justify-center gap-2"
+                className="w-full py-3 px-4 rounded bg-[#17191D] border border-[#2C3038] text-white font-headline text-xs uppercase tracking-wider flex items-center justify-center gap-2 text-center"
               >
-                <Phone className="w-4 h-4 text-accent-lime" />
-                <span>CALL: {DISPLAY_PHONE}</span>
+                <Phone className="w-3.5 h-3.5 text-[#C6FF35]" />
+                <span>{DISPLAY_PHONE}</span>
               </a>
 
-              <p className="text-center font-mono text-[10px] text-on-surface-variant mt-2">
-                44/319, Meston Road, Parade, Kanpur – 208001
+              <p className="font-mono text-[10px] text-[#A1A1AA] text-center mt-2">
+                44/319, Meston Road, Parade, Kanpur
               </p>
             </div>
           </div>

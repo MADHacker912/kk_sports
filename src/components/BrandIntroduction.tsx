@@ -1,94 +1,75 @@
 import React from 'react';
-import { Award, Wrench, MapPin } from 'lucide-react';
+import { Award, Wrench } from 'lucide-react';
 
 export const BrandIntroduction: React.FC = () => {
   return (
-    <section className="w-full bg-surface py-space-xl lg:py-28 px-space-md lg:px-space-xl border-b border-cold-border">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
-        {/* Left Column: Manifesto & Heritage */}
-        <div className="lg:col-span-6 flex flex-col">
-          <div className="flex items-center gap-2 mb-space-sm">
-            <span className="w-2.5 h-2.5 bg-accent-lime" />
-            <span className="font-headline text-[10px] sm:text-xs uppercase text-accent-lime tracking-[0.2em]">
-              HERITAGE ATELIER // KANPUR
-            </span>
-          </div>
+    <section id="brand-introduction" className="w-full bg-[#08090B] py-20 lg:py-32 px-4 sm:px-6 lg:px-8 border-b border-[#1F2228]">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        {/* Left Column: Editorial Statement (7 cols) */}
+        <div className="lg:col-span-7 flex flex-col">
+          <span className="font-mono text-[10px] sm:text-xs uppercase text-[#C6FF35] tracking-[0.25em] mb-4 font-semibold">
+            HERITAGE &amp; ATELIER // KANPUR
+          </span>
 
-          <h2 className="font-headline text-3xl sm:text-4xl lg:text-5xl uppercase text-white tracking-tight leading-[1.05] mb-space-md">
-            MORE THAN JUST EQUIPMENT.<br />
-            <span className="text-on-surface-variant">IT’S THE PURSUIT OF</span> MASTERY.
+          <h2 className="font-headline text-3xl sm:text-4xl lg:text-5xl uppercase text-white font-bold tracking-tight leading-[1.05] mb-6">
+            MORE THAN JUST EQUIPMENT. <br />
+            <span className="text-[#A1A1AA]">THE PURSUIT OF MASTERY.</span>
           </h2>
 
-          <p className="font-body text-base sm:text-lg text-on-surface leading-relaxed mb-space-sm">
-            Established in the historic sporting epicenter of Meston Road, Parade, K.K. Sports has grown into North India’s defining powerhouse for genuine sports gear, professional athletic systems, and recreational play.
+          <p className="font-body text-base sm:text-lg text-white/90 leading-relaxed mb-4">
+            Established in the historic sporting epicenter of Meston Road, Parade, K.K. Sports is North India’s defining destination for authentic athletic gear, professional tournament systems, and recreational excellence.
           </p>
 
-          <p className="font-body text-sm sm:text-base text-on-surface-variant leading-relaxed mb-space-lg">
-            From supplying hand-selected grade-1 English willow to junior academies across Uttar Pradesh, to equipping university tournaments, municipal stadium turf initiatives, and school physical education programs, our commitment is absolute: authenticity without shortcut, precision without compromise.
+          <p className="font-body text-sm sm:text-base text-[#A1A1AA] leading-relaxed mb-8">
+            From hand-selected English willow for rising top-order batters across Uttar Pradesh, to equipping university teams, stadium turf programs, and district academies, our focus is absolute: verified manufacturer authenticity and precision preparation.
           </p>
 
-          {/* Technical Specs Checklist */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-space-md pt-space-md border-t border-cold-border">
-            <div className="flex items-start gap-3">
-              <Award className="w-5 h-5 text-accent-lime shrink-0 mt-0.5" />
-              <div>
-                <span className="font-headline text-xs sm:text-sm text-white uppercase font-bold block mb-0.5">
-                  AUTHENTIC DIRECT SOURCING
-                </span>
-                <span className="font-body text-xs text-on-surface-variant leading-normal block">
-                  Direct official inventory from SS, SG, Yonex, Cosco, Nivia, Mikasa &amp; leading sports brands.
+          {/* Clean 2-column Atelier Pillars */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6 border-t border-[#1F2228]">
+            <div className="flex flex-col gap-1.5">
+              <div className="flex items-center gap-2">
+                <Award className="w-4 h-4 text-[#C6FF35]" />
+                <span className="font-headline text-xs uppercase tracking-wider text-white font-bold">
+                  DIRECT SOURCING
                 </span>
               </div>
+              <p className="font-body text-xs text-[#A1A1AA] leading-normal">
+                Direct authorized inventory from SS, SG, Yonex, Cosco, Nivia, and Mikasa with official manufacturer holograms.
+              </p>
             </div>
 
-            <div className="flex items-start gap-3">
-              <Wrench className="w-5 h-5 text-accent-lime shrink-0 mt-0.5" />
-              <div>
-                <span className="font-headline text-xs sm:text-sm text-white uppercase font-bold block mb-0.5">
-                  PRO ATELIER SERVICE LAB
-                </span>
-                <span className="font-body text-xs text-on-surface-variant leading-normal block">
-                  Machine bat knocking, raw oiling, binding &amp; electronic computer-controlled racket stringing.
+            <div className="flex flex-col gap-1.5">
+              <div className="flex items-center gap-2">
+                <Wrench className="w-4 h-4 text-[#C6FF35]" />
+                <span className="font-headline text-xs uppercase tracking-wider text-white font-bold">
+                  WORKSHOP ATELIER
                 </span>
               </div>
+              <p className="font-body text-xs text-[#A1A1AA] leading-normal">
+                On-site automated machine bat knocking, raw oiling, toe armor resin, and electronic precision racket stringing.
+              </p>
             </div>
           </div>
         </div>
 
-        {/* Right Column: Editorial Photo Block */}
-        <div className="lg:col-span-6 relative">
-          <div className="relative bg-surface-container-low rounded p-2 border border-cold-border overflow-hidden shadow-2xl">
-            <div className="relative aspect-[4/5] w-full overflow-hidden rounded bg-surface-container-highest">
-              <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIsvAA9f0hIEqJ40qFpF_CbxbW_ECiHyqPubY7UXvKZ8Rt7duU405Ew2v0RGO2TmxNMU7Q9LxMvkC8SI2PR142SLGB7SCqsYAaDC0wArmNERns58H3rjpLiiS2FRZjcZrU5i_tdboQZ2HdOfC_f7ZwAL3dLa5td0GoIjxix3mxFdrDnF9eSX81ZJNOCof52gxCJ1wC9RuOU_US0kMSQ490oXHx5oppM4Q83-Rbsxpf"
-                alt="K.K. Sports Kanpur Leadership in Athletic Apparel"
-                className="w-full h-full object-cover object-top filter grayscale contrast-125 transition-transform duration-700 hover:scale-105"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent opacity-90" />
+        {/* Right Column: Confident Editorial Media (5 cols) */}
+        <div className="lg:col-span-5 relative">
+          <div className="relative aspect-[4/5] w-full rounded bg-[#17191D] border border-[#2C3038] overflow-hidden shadow-2xl">
+            <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIsvAA9f0hIEqJ40qFpF_CbxbW_ECiHyqPubY7UXvKZ8Rt7duU405Ew2v0RGO2TmxNMU7Q9LxMvkC8SI2PR142SLGB7SCqsYAaDC0wArmNERns58H3rjpLiiS2FRZjcZrU5i_tdboQZ2HdOfC_f7ZwAL3dLa5td0GoIjxix3mxFdrDnF9eSX81ZJNOCof52gxCJ1wC9RuOU_US0kMSQ490oXHx5oppM4Q83-Rbsxpf"
+              alt="K.K. Sports Kanpur Leadership"
+              className="w-full h-full object-cover object-top filter grayscale contrast-125 transition-transform duration-700 hover:scale-105"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#08090B] via-transparent to-transparent opacity-80 pointer-events-none" />
 
-              {/* Floating Spec Badge */}
-              <div className="absolute top-4 right-4 bg-surface-container-lowest/90 backdrop-blur border border-accent-lime/40 px-3 py-1.5 rounded">
-                <span className="font-headline text-[10px] text-accent-lime uppercase tracking-wider font-bold">
-                  DIRECTOR’S ARCHIVE // 2025
-                </span>
-              </div>
-
-              {/* Quote Overlay */}
-              <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 p-space-md bg-surface-container/95 backdrop-blur-md rounded border border-cold-border">
-                <span className="font-headline text-[10px] text-accent-lime uppercase tracking-widest block mb-1">
-                  ESTABLISHED PERFORMANCE HERITAGE
-                </span>
-                <p className="font-headline text-base sm:text-lg text-white uppercase font-bold tracking-tight mb-2">
-                  “We equip champions from grassroots cricket pitches to championship turf.”
-                </p>
-                <div className="flex items-center justify-between font-mono text-[11px] text-on-surface-variant">
-                  <span>HEAD GEAR ATELIER // K.K. SPORTS</span>
-                  <span className="text-accent-lime font-bold flex items-center gap-1">
-                    <MapPin className="w-3 h-3" /> KANPUR, UP
-                  </span>
-                </div>
-              </div>
+            <div className="absolute bottom-6 left-6 right-6 p-4 rounded bg-[#0D0E11]/90 backdrop-blur border border-[#2C3038]">
+              <span className="font-mono text-[9px] uppercase tracking-widest text-[#C6FF35] block mb-1">
+                KANPUR FLAGSHIP ATELIER
+              </span>
+              <p className="font-headline text-sm uppercase text-white font-bold tracking-tight">
+                “Grassroots pitches to championship turf.”
+              </p>
             </div>
           </div>
         </div>
