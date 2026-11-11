@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { DISPLAY_PHONE, getGeneralInquiryUrl } from '../utils/whatsapp';
-import { Phone, Search, Menu, X, ArrowUpRight, MessageSquare } from 'lucide-react';
+import { Link, useRouter } from '../utils/router';
+import { Phone, Search, Menu, X, ArrowUpRight, MessageSquare, ShieldCheck } from 'lucide-react';
 
 interface NavigationProps {
   onOpenSearch: () => void;
@@ -10,6 +11,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenSearch }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const { currentPath } = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,12 +26,12 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenSearch }) => {
   }, []);
 
   const navLinks = [
-    { name: 'Collection', href: '#featured-collection' },
-    { name: 'Categories', href: '#sports-categories' },
-    { name: 'Gallery', href: '#horizontal-gallery' },
-    { name: 'Cricket Atelier', href: '#signature-atelier' },
-    { name: 'About', href: '#brand-introduction' },
-    { name: 'Kanpur Store', href: '#store-location' },
+    { name: 'Collection', href: '/#featured-collection' },
+    { name: 'Categories', href: '/#sports-categories' },
+    { name: 'Cricket Atelier', href: '/atelier' },
+    { name: 'About', href: '/about' },
+    { name: 'Institutions', href: '/institutional' },
+    { name: 'Kanpur Store', href: '/contact' },
   ];
 
   return (
@@ -41,7 +43,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenSearch }) => {
             : 'bg-[#F8F7F3]/80 backdrop-blur-sm border-b border-transparent py-4 sm:py-6'
         }`}
       >
-        {/* Subtle reading progress indicator at top */}
+        {/* Reading progress indicator at top */}
         <div
           className="absolute top-0 left-0 h-[2px] bg-[#52634B] transition-all duration-100 ease-out z-50"
           style={{ width: `${scrollProgress}%` }}
@@ -50,8 +52,8 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenSearch }) => {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
           {/* Logo / Brand Name */}
-          <a
-            href="#"
+          <Link
+            href="/"
             className="flex items-center gap-3 group focus-visible:outline-none"
           >
             <div className="flex flex-col">
@@ -62,20 +64,29 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenSearch }) => {
                 Kanpur • Est. Parade
               </span>
             </div>
-          </a>
+          </Link>
 
-          {/* Desktop Nav Links with understated transition */}
-          <nav className="hidden md:flex items-center gap-8" aria-label="Main Navigation">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="font-body text-sm text-[#77776F] hover:text-[#272923] transition-colors relative py-1 group"
-              >
-                <span>{link.name}</span>
-                <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#52634B] transition-all duration-300 group-hover:w-full" />
-              </a>
-            ))}
+          {/* Desktop Nav Links */}
+          <nav className="hidden md:flex items-center gap-7" aria-label="Main Navigation">
+            {navLinks.map((link) => {
+              const isCurrent = currentPath === link.href;
+              return (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className={`font-body text-xs sm:text-sm transition-colors relative py-1 group ${
+                    isCurrent ? 'text-[#52634B] font-semibold' : 'text-[#77776F] hover:text-[#272923]'
+                  }`}
+                >
+                  <span>{link.name}</span>
+                  <span
+                    className={`absolute bottom-0 left-0 h-[1.5px] bg-[#52634B] transition-all duration-300 ${
+                      isCurrent ? 'w-full' : 'w-0 group-hover:w-full'
+                    }`}
+                  />
+                </Link>
+              );
+            })}
           </nav>
 
           {/* Right Action Cluster */}
@@ -103,7 +114,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenSearch }) => {
               href={getGeneralInquiryUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#272923] hover:bg-[#52634B] text-white font-headline text-xs font-semibold tracking-wider transition-all duration-200 active:scale-95"
+              className="hidden sm:flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#272923] hover:bg-[#52634B] text-white font-headline text-xs font-semibold tracking-wider transition-all duration-200 active:scale-95 shadow-xs"
             >
               <MessageSquare className="w-3.5 h-3.5" />
               <span>Inquire</span>
@@ -114,7 +125,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenSearch }) => {
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle Menu"
               aria-expanded={mobileMenuOpen}
-              className="md:hidden p-2 text-[#242720] hover:bg-[#F0EFE9] transition-colors rounded-md active:scale-95"
+              className="md:hidden p-2 text-[#272923] hover:bg-[#F1EFE8] transition-colors rounded-lg active:scale-95"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -124,52 +135,74 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenSearch }) => {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 md:hidden">
+        <div className="fixed inset-0 z-50 md:hidden">
           <div
-            className="fixed inset-0 bg-[#242720]/40 backdrop-blur-sm transition-opacity"
+            className="fixed inset-0 bg-[#272923]/40 backdrop-blur-sm transition-opacity"
             onClick={() => setMobileMenuOpen(false)}
           />
 
-          <div className="fixed top-0 right-0 bottom-0 w-full max-w-xs bg-[#F8F7F3] border-l border-[#E7E5DE] p-6 flex flex-col justify-between overflow-y-auto shadow-xl transition-transform">
+          <div className="fixed top-0 right-0 bottom-0 w-full max-w-xs bg-[#F8F7F3] border-l border-[#DDD8CC] p-6 flex flex-col justify-between overflow-y-auto shadow-2xl transition-transform">
             <div className="flex flex-col gap-6">
-              <div className="flex items-center justify-between pb-4 border-b border-[#E7E5DE]">
+              <div className="flex items-center justify-between pb-4 border-b border-[#DDD8CC]">
                 <div>
-                  <span className="font-headline text-base font-bold text-[#242720]">
+                  <span className="font-headline text-base font-bold text-[#272923]">
                     K.K. Sports
                   </span>
                   <span className="font-body text-[11px] text-[#77776F] block">
-                    Games &amp; Toys • Kanpur
+                    Games &amp; Toys • Parade Kanpur
                   </span>
                 </div>
                 <button
                   onClick={() => setMobileMenuOpen(false)}
-                  className="p-1 text-[#77776F] hover:text-[#242720]"
+                  className="p-1 text-[#77776F] hover:text-[#272923]"
                 >
                   <X className="w-5 h-5" />
                 </button>
               </div>
 
-              <nav className="flex flex-col gap-3">
+              <nav className="flex flex-col gap-2">
                 {navLinks.map((link) => (
-                  <a
+                  <Link
                     key={link.name}
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center justify-between py-2 text-[#242720] font-headline text-sm hover:text-[#66785F] transition-colors"
+                    className="flex items-center justify-between py-2.5 px-3 rounded-lg text-[#272923] hover:bg-[#F1EFE8] font-headline text-xs font-semibold transition-colors"
                   >
                     <span>{link.name}</span>
                     <ArrowUpRight className="w-4 h-4 text-[#77776F]" />
-                  </a>
+                  </Link>
                 ))}
+
+                <div className="pt-2 border-t border-[#DDD8CC] mt-2 flex flex-col gap-2">
+                  <Link
+                    href="/authenticity"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center justify-between py-2.5 px-3 rounded-lg text-[#52634B] hover:bg-[#EAE6DC] font-headline text-xs font-semibold transition-colors"
+                  >
+                    <span className="flex items-center gap-2">
+                      <ShieldCheck className="w-4 h-4" />
+                      <span>Authenticity Guide</span>
+                    </span>
+                    <ArrowUpRight className="w-4 h-4" />
+                  </Link>
+
+                  <Link
+                    href="/404"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center justify-between py-2 px-3 text-[#77776F] hover:text-[#272923] font-body text-xs transition-colors"
+                  >
+                    <span>404 Preview</span>
+                  </Link>
+                </div>
               </nav>
             </div>
 
-            <div className="flex flex-col gap-3 pt-6 border-t border-[#E7E5DE]">
+            <div className="flex flex-col gap-3 pt-6 border-t border-[#DDD8CC]">
               <a
                 href={getGeneralInquiryUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3 px-4 rounded-md bg-[#66785F] hover:bg-[#55644F] text-white font-headline text-xs uppercase tracking-wider font-semibold flex items-center justify-center gap-2 text-center transition-colors shadow-sm"
+                className="w-full py-3 px-4 rounded-xl bg-[#52634B] hover:bg-[#43523D] text-white font-headline text-xs font-semibold flex items-center justify-center gap-2 text-center transition-colors shadow-sm"
               >
                 <MessageSquare className="w-4 h-4" />
                 <span>Chat on WhatsApp</span>
@@ -177,15 +210,11 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenSearch }) => {
 
               <a
                 href={`tel:${DISPLAY_PHONE.replace(/\s+/g, '')}`}
-                className="w-full py-2.5 px-4 rounded-md bg-[#F0EFE9] text-[#242720] font-body text-xs flex items-center justify-center gap-2 text-center"
+                className="w-full py-2.5 px-4 rounded-xl bg-[#F1EFE8] text-[#272923] font-body text-xs flex items-center justify-center gap-2 text-center border border-[#DDD8CC]"
               >
-                <Phone className="w-3.5 h-3.5 text-[#66785F]" />
+                <Phone className="w-3.5 h-3.5 text-[#52634B]" />
                 <span>{DISPLAY_PHONE}</span>
               </a>
-
-              <p className="font-body text-[11px] text-[#77776F] text-center mt-2">
-                44/319, Meston Road, Parade, Kanpur
-              </p>
             </div>
           </div>
         </div>
