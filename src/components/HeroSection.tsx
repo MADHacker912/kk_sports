@@ -1,32 +1,125 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { ArrowRight, MapPin } from 'lucide-react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export const HeroSection: React.FC = () => {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const headlineRef = useRef<HTMLHeadingElement | null>(null);
+  const descRef = useRef<HTMLParagraphElement | null>(null);
+  const ctaRef = useRef<HTMLDivElement | null>(null);
+  const imageContainerRef = useRef<HTMLDivElement | null>(null);
+  const imageRef = useRef<HTMLImageElement | null>(null);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const ctx = gsap.context(() => {
+      // 1. Text Reveal Animation for Headline words
+      const words = headlineRef.current?.querySelectorAll('.reveal-word');
+      if (words && words.length > 0) {
+        gsap.fromTo(
+          words,
+          { y: 35, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.9,
+            stagger: 0.12,
+            ease: 'power3.out',
+            delay: 0.15,
+          }
+        );
+      }
+
+      // 2. Supporting text and CTA entrance
+      if (descRef.current && ctaRef.current) {
+        gsap.fromTo(
+          [descRef.current, ctaRef.current],
+          { y: 20, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: 'power3.out',
+            delay: 0.45,
+          }
+        );
+      }
+
+      // 3. Image entrance reveal (gentle zoom down into final position)
+      if (imageRef.current) {
+        gsap.fromTo(
+          imageRef.current,
+          { scale: 1.08, opacity: 0.85 },
+          {
+            scale: 1,
+            opacity: 1,
+            duration: 1.2,
+            ease: 'power2.out',
+            delay: 0.2,
+          }
+        );
+
+        // 4. Subtle Parallax on scroll
+        gsap.to(imageRef.current, {
+          yPercent: 12,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: true,
+          },
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="relative w-full bg-[#F8F7F3] pt-28 sm:pt-36 lg:pt-40 pb-16 lg:pb-24 border-b border-[#E7E5DE] overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="relative w-full bg-[#F8F7F3] pt-28 sm:pt-36 lg:pt-40 pb-16 lg:pb-24 border-b border-[#E7E5DE] overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center min-h-[520px]">
           {/* Left Column: Thoughtful Editorial Copy (6 cols) */}
           <div className="lg:col-span-6 flex flex-col justify-center">
             <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#66785F] mb-4 font-semibold">
               K.K. SPORTS • KANPUR FLAGSHIP
             </span>
 
-            {/* Headline */}
-            <h1 className="font-headline text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#242720] leading-[1.05] mb-6">
-              Find Your Game.
+            {/* Headline with word-by-word line reveal wrapper */}
+            <h1
+              ref={headlineRef}
+              className="font-headline text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#242720] leading-[1.05] mb-6 overflow-hidden"
+            >
+              <span className="inline-block overflow-hidden py-1">
+                <span className="reveal-word inline-block mr-3">Find</span>
+                <span className="reveal-word inline-block mr-3">Your</span>
+                <span className="reveal-word inline-block">Game.</span>
+              </span>
             </h1>
 
             {/* Supporting Description */}
-            <p className="font-body text-base sm:text-lg text-[#77776F] max-w-lg mb-8 leading-relaxed">
+            <p
+              ref={descRef}
+              className="font-body text-base sm:text-lg text-[#77776F] max-w-lg mb-8 leading-relaxed"
+            >
               Explore sports equipment, fitness essentials, games and more at K.K. Sports. North India’s trusted destination for verified athletic gear.
             </p>
 
             {/* Focused CTAs */}
-            <div className="flex flex-wrap items-center gap-4">
+            <div ref={ctaRef} className="flex flex-wrap items-center gap-4">
               <a
                 href="#featured-collection"
-                className="px-7 py-3.5 rounded-md bg-[#242720] hover:bg-[#66785F] text-white font-headline text-xs sm:text-sm font-semibold tracking-wider transition-colors duration-200 flex items-center gap-2"
+                className="px-7 py-3.5 rounded-md bg-[#242720] hover:bg-[#66785F] text-white font-headline text-xs sm:text-sm font-semibold tracking-wider transition-all duration-200 flex items-center gap-2 shadow-sm hover:shadow"
               >
                 <span>EXPLORE COLLECTION</span>
                 <ArrowRight className="w-4 h-4" />
@@ -49,19 +142,23 @@ export const HeroSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Authentic Editorial Sports Photography (6 cols) */}
+          {/* Right Column: Editorial Sports Photography with Parallax & Mask (6 cols) */}
           <div className="lg:col-span-6">
-            <div className="relative aspect-[4/3] sm:aspect-[16/11] w-full rounded-lg overflow-hidden bg-[#F0EFE9] border border-[#E7E5DE] shadow-sm">
+            <div
+              ref={imageContainerRef}
+              className="relative aspect-[4/3] sm:aspect-[16/11] w-full rounded-lg overflow-hidden bg-[#F0EFE9] border border-[#E7E5DE] shadow-sm"
+            >
               <img
+                ref={imageRef}
                 src="https://images.unsplash.com/photo-1531415074868-036b1c57e329?auto=format&fit=crop&w=1400&q=80"
                 alt="Athletic preparation and sports equipment in natural sunlight"
-                className="w-full h-full object-cover object-center filter contrast-[1.02] hover:scale-102 transition-transform duration-700"
+                className="w-full h-full object-cover object-center filter contrast-[1.02] will-change-transform"
                 loading="eager"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
-              
+
               {/* Subtle caption pill */}
-              <div className="absolute bottom-4 left-4 px-3 py-1.5 rounded bg-white/90 backdrop-blur-sm border border-[#E7E5DE] text-xs text-[#242720] font-body">
+              <div className="absolute bottom-4 left-4 px-3 py-1.5 rounded bg-white/90 backdrop-blur-sm border border-[#E7E5DE] text-xs text-[#242720] font-body shadow-sm">
                 Curated for competitive athletes &amp; sports enthusiasts
               </div>
             </div>

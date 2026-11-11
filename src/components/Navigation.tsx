@@ -9,10 +9,15 @@ interface NavigationProps {
 export const Navigation: React.FC<NavigationProps> = ({ onOpenSearch }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
+      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalScroll > 0) {
+        setScrollProgress((window.scrollY / totalScroll) * 100);
+      }
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
@@ -35,6 +40,13 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenSearch }) => {
             : 'bg-[#F8F7F3]/80 backdrop-blur-sm border-b border-transparent py-5 sm:py-6'
         }`}
       >
+        {/* Subtle reading progress indicator at top */}
+        <div
+          className="absolute top-0 left-0 h-[2px] bg-[#66785F] transition-all duration-100 ease-out z-50"
+          style={{ width: `${scrollProgress}%` }}
+          aria-hidden="true"
+        />
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
           {/* Logo / Brand Name */}
           <a
@@ -42,7 +54,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenSearch }) => {
             className="flex items-center gap-3 group focus-visible:outline-none"
           >
             <div className="flex flex-col">
-              <span className="font-headline text-lg sm:text-xl font-bold tracking-tight text-[#242720] leading-none">
+              <span className="font-headline text-lg sm:text-xl font-bold tracking-tight text-[#242720] leading-none transition-transform duration-300 group-hover:-translate-y-0.5">
                 K.K. Sports
               </span>
               <span className="font-body text-[11px] tracking-wider text-[#77776F] mt-1">
@@ -51,15 +63,16 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenSearch }) => {
             </div>
           </a>
 
-          {/* Desktop Nav Links */}
+          {/* Desktop Nav Links with understated transition */}
           <nav className="hidden md:flex items-center gap-8" aria-label="Main Navigation">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="font-body text-sm text-[#77776F] hover:text-[#242720] transition-colors"
+                className="font-body text-sm text-[#77776F] hover:text-[#242720] transition-colors relative py-1 group"
               >
-                {link.name}
+                <span>{link.name}</span>
+                <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#66785F] transition-all duration-300 group-hover:w-full" />
               </a>
             ))}
           </nav>
@@ -70,7 +83,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenSearch }) => {
             <button
               onClick={onOpenSearch}
               aria-label="Search Catalog"
-              className="p-2 text-[#77776F] hover:text-[#242720] hover:bg-[#F0EFE9] transition-colors rounded-md"
+              className="p-2 text-[#77776F] hover:text-[#242720] hover:bg-[#F0EFE9] transition-all rounded-md active:scale-95"
             >
               <Search className="w-4 h-4" />
             </button>
@@ -78,7 +91,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenSearch }) => {
             {/* Direct Telephone */}
             <a
               href={`tel:${DISPLAY_PHONE.replace(/\s+/g, '')}`}
-              className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#F0EFE9] hover:bg-[#E7E5DE] text-[#242720] font-body text-xs transition-colors"
+              className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#F0EFE9] hover:bg-[#E7E5DE] text-[#242720] font-body text-xs transition-all active:scale-95"
             >
               <Phone className="w-3.5 h-3.5 text-[#66785F]" />
               <span>{DISPLAY_PHONE}</span>
@@ -89,7 +102,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenSearch }) => {
               href={getGeneralInquiryUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:flex items-center gap-1.5 px-4 py-2 rounded-md bg-[#242720] hover:bg-[#66785F] text-white font-headline text-xs font-semibold tracking-wider transition-colors"
+              className="hidden sm:flex items-center gap-1.5 px-4 py-2 rounded-md bg-[#242720] hover:bg-[#66785F] text-white font-headline text-xs font-semibold tracking-wider transition-all duration-200 active:scale-95"
             >
               <MessageSquare className="w-3.5 h-3.5" />
               <span>Inquire</span>
@@ -100,7 +113,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenSearch }) => {
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle Menu"
               aria-expanded={mobileMenuOpen}
-              className="md:hidden p-2 text-[#242720] hover:bg-[#F0EFE9] transition-colors rounded-md"
+              className="md:hidden p-2 text-[#242720] hover:bg-[#F0EFE9] transition-colors rounded-md active:scale-95"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -112,11 +125,11 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenSearch }) => {
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-40 md:hidden">
           <div
-            className="fixed inset-0 bg-[#242720]/40 backdrop-blur-sm"
+            className="fixed inset-0 bg-[#242720]/40 backdrop-blur-sm transition-opacity"
             onClick={() => setMobileMenuOpen(false)}
           />
 
-          <div className="fixed top-0 right-0 bottom-0 w-full max-w-xs bg-[#F8F7F3] border-l border-[#E7E5DE] p-6 flex flex-col justify-between overflow-y-auto shadow-xl">
+          <div className="fixed top-0 right-0 bottom-0 w-full max-w-xs bg-[#F8F7F3] border-l border-[#E7E5DE] p-6 flex flex-col justify-between overflow-y-auto shadow-xl transition-transform">
             <div className="flex flex-col gap-6">
               <div className="flex items-center justify-between pb-4 border-b border-[#E7E5DE]">
                 <div>
@@ -155,7 +168,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenSearch }) => {
                 href={getGeneralInquiryUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3 px-4 rounded-md bg-[#66785F] hover:bg-[#55644F] text-white font-headline text-xs uppercase tracking-wider font-semibold flex items-center justify-center gap-2 text-center transition-colors"
+                className="w-full py-3 px-4 rounded-md bg-[#66785F] hover:bg-[#55644F] text-white font-headline text-xs uppercase tracking-wider font-semibold flex items-center justify-center gap-2 text-center transition-colors shadow-sm"
               >
                 <MessageSquare className="w-4 h-4" />
                 <span>Chat on WhatsApp</span>

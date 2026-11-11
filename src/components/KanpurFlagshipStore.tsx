@@ -1,20 +1,68 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { BUSINESS_INFO } from '../data/sportsData';
 import { getStoreVisitInquiryUrl, DISPLAY_PHONE } from '../utils/whatsapp';
 import { MapPin, Navigation, Clock, Phone, MessageSquare, ArrowUpRight } from 'lucide-react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export const KanpurFlagshipStore: React.FC = () => {
+  const containerRef = useRef<HTMLElement>(null);
+  const detailsRef = useRef<HTMLDivElement>(null);
+  const mapRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion || !containerRef.current) return;
+
+    const ctx = gsap.context(() => {
+      // Header entrance
+      gsap.from('#flagship-header', {
+        scrollTrigger: {
+          trigger: '#flagship-header',
+          start: 'top 85%',
+        },
+        opacity: 0,
+        y: 20,
+        duration: 0.7,
+        ease: 'power3.out',
+      });
+
+      // Split panels entrance
+      if (detailsRef.current && mapRef.current) {
+        gsap.from([detailsRef.current, mapRef.current], {
+          scrollTrigger: {
+            trigger: detailsRef.current,
+            start: 'top 80%',
+          },
+          opacity: 0,
+          y: 30,
+          stagger: 0.15,
+          duration: 0.8,
+          ease: 'power3.out',
+        });
+      }
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section
       id="store-location"
+      ref={containerRef}
       className="w-full bg-[#F8F7F3] py-20 lg:py-28 px-4 sm:px-6 lg:px-8 border-b border-[#E7E5DE]"
     >
       <div className="max-w-7xl mx-auto flex flex-col gap-10">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[#E7E5DE] pb-8">
+        <div
+          id="flagship-header"
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[#E7E5DE] pb-8"
+        >
           <div>
             <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#66785F] mb-2 block font-semibold">
-              FLAGSHIP LOCATION
+              FLAGSHIP LOCATION // MESTON ROAD
             </span>
             <h2 className="font-headline text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#242720]">
               Visit Kanpur Flagship
@@ -28,7 +76,10 @@ export const KanpurFlagshipStore: React.FC = () => {
         {/* Store Location & Map Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           {/* Left Column: Details (5 cols) */}
-          <div className="lg:col-span-5 bg-white p-6 sm:p-8 rounded-lg border border-[#E7E5DE] flex flex-col justify-between gap-6 shadow-sm">
+          <div
+            ref={detailsRef}
+            className="lg:col-span-5 bg-white p-6 sm:p-8 rounded-2xl border border-[#E7E5DE] flex flex-col justify-between gap-6 shadow-sm"
+          >
             <div className="flex flex-col gap-6">
               {/* Address */}
               <div className="flex items-start gap-4">
@@ -118,8 +169,11 @@ export const KanpurFlagshipStore: React.FC = () => {
           </div>
 
           {/* Right Column: Clean Embedded Google Map (7 cols) */}
-          <div className="lg:col-span-7 rounded-lg bg-white border border-[#E7E5DE] p-2 min-h-[360px] flex flex-col justify-between overflow-hidden shadow-sm">
-            <div className="relative w-full h-full min-h-[340px] rounded overflow-hidden">
+          <div
+            ref={mapRef}
+            className="lg:col-span-7 rounded-2xl bg-white border border-[#E7E5DE] p-2 min-h-[360px] flex flex-col justify-between overflow-hidden shadow-sm"
+          >
+            <div className="relative w-full h-full min-h-[340px] rounded-xl overflow-hidden">
               <iframe
                 title="K.K. Sports Store Map"
                 src="https://maps.google.com/maps?q=44/319,%20Meston%20Road,%20Parade,%20Kanpur,%20Uttar%20Pradesh%20208001&t=&z=15&ie=UTF8&iwloc=&output=embed"
