@@ -2,13 +2,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, MapPin } from 'lucide-react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { BadmintonModelViewer } from './3d/BadmintonModelViewer';
-import { CricketModelViewer } from './3d/CricketModelViewer';
+import { CarModelViewer } from './3d/CarModelViewer';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export const HeroSection: React.FC = () => {
-  const [heroView, setHeroView] = useState<'badminton' | 'cricket' | 'photo'>('badminton');
+  const [heroView, setHeroView] = useState<'3d' | 'photo'>('3d');
   const sectionRef = useRef<HTMLElement | null>(null);
   const headlineRef = useRef<HTMLHeadingElement | null>(null);
   const descRef = useRef<HTMLParagraphElement | null>(null);
@@ -132,33 +131,23 @@ export const HeroSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Downloaded 3D Model with Auto-Rotation (6 cols) */}
+          {/* Right Column: 3D Sports Car with Auto-Rotation (6 cols) */}
           <div className="lg:col-span-6">
             <div
               ref={imageContainerRef}
-              className="relative aspect-[4/3] sm:aspect-[16/11] min-h-[400px] w-full rounded-2xl overflow-hidden bg-gradient-to-b from-[#FAF9F5] via-[#F1EFE8] to-[#EAE6DC] border border-[#DDD8CC] shadow-[0_8px_30px_rgba(39,41,35,0.06)] flex items-center justify-center p-2"
+              className="relative aspect-[4/3] sm:aspect-[16/11] min-h-[420px] w-full rounded-2xl overflow-hidden bg-gradient-to-b from-[#FAF9F5] via-[#F1EFE8] to-[#EAE6DC] border border-[#DDD8CC] shadow-[0_8px_30px_rgba(39,41,35,0.06)] flex items-center justify-center p-2"
             >
               {/* Interactive View Switcher Tabs */}
               <div className="absolute top-4 right-4 z-20 flex items-center gap-1 p-1 rounded-xl bg-white/90 backdrop-blur-sm border border-[#DDD8CC] shadow-xs">
                 <button
-                  onClick={() => setHeroView('badminton')}
+                  onClick={() => setHeroView('3d')}
                   className={`px-3 py-1 rounded-lg font-headline text-xs font-semibold transition-all ${
-                    heroView === 'badminton'
+                    heroView === '3d'
                       ? 'bg-[#272923] text-white shadow-xs'
                       : 'text-[#77776F] hover:text-[#272923]'
                   }`}
                 >
-                  3D Racket
-                </button>
-                <button
-                  onClick={() => setHeroView('cricket')}
-                  className={`px-3 py-1 rounded-lg font-headline text-xs font-semibold transition-all ${
-                    heroView === 'cricket'
-                      ? 'bg-[#272923] text-white shadow-xs'
-                      : 'text-[#77776F] hover:text-[#272923]'
-                  }`}
-                >
-                  3D Willow Set
+                  3D Sports Car
                 </button>
                 <button
                   onClick={() => setHeroView('photo')}
@@ -172,28 +161,14 @@ export const HeroSection: React.FC = () => {
                 </button>
               </div>
 
-              {heroView === 'badminton' && (
+              {heroView === '3d' ? (
                 <div className="w-full h-full p-2">
-                  <BadmintonModelViewer
+                  <CarModelViewer
                     autoRotate={true}
-                    fallbackImage="https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?auto=format&fit=crop&w=800&q=80"
                     className="w-full h-full"
                   />
                 </div>
-              )}
-
-              {heroView === 'cricket' && (
-                <div className="w-full h-full p-2">
-                  <CricketModelViewer
-                    rotationDeg={0}
-                    autoRotate={true}
-                    fallbackImage="https://lh3.googleusercontent.com/aida-public/AB6AXuAIpwHpkeSILKoWrlSa4ZzdnwoQC4EegQ25LhWnVuQO2NZnC1ArZrnX86w8RXD4PB8yLGaE_bFcFGrhm4n-5OhvS2-E-5HHuUjx0i0vKPwMOv6o1nVIaALPaabKTICVPmJUEG3GmckAKwr2GDQOUm0Y37U9ZBYU0TTV87s4FBkAR8fhxshdQ-wAy5XZyEm3DpUxrKMxtu4PUPS-OOm_yWJm4Q4DdbjyCm73Ca8kuzdP"
-                    className="w-full h-full"
-                  />
-                </div>
-              )}
-
-              {heroView === 'photo' && (
+              ) : (
                 <div className="relative w-full h-full rounded-xl overflow-hidden">
                   <img
                     ref={imageRef}
@@ -208,9 +183,9 @@ export const HeroSection: React.FC = () => {
 
               {/* Subtle caption pill */}
               <div className="absolute bottom-4 left-4 px-3 py-1.5 rounded-lg bg-white/95 backdrop-blur-sm border border-[#DDD8CC] text-xs text-[#272923] font-body shadow-sm z-20">
-                {heroView === 'badminton' && 'Tournament Badminton Racket & Shuttlecock // Auto-Rotate'}
-                {heroView === 'cricket' && 'Sussex Grade-1 Willow & Stumps // Auto-Rotate'}
-                {heroView === 'photo' && 'Curated for competitive athletes & sports enthusiasts'}
+                {heroView === '3d'
+                  ? 'Grand Touring 3D Specimen // 360° Auto-Rotation'
+                  : 'Curated for competitive athletes & sports enthusiasts'}
               </div>
             </div>
           </div>
