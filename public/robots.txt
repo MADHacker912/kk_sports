@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kksports.in/sitemap.xml

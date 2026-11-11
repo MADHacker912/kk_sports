@@ -1,0 +1,58 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  darkMode: "class",
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        "primary-container": "#bdf529",
+        "primary-fixed": "#bdf529",
+        "primary-fixed-dim": "#a3d800",
+        "accent-lime": "#C6FF35",
+        "on-primary": "#263500",
+        "on-primary-fixed": "#151f00",
+        "on-primary-container": "#516d00",
+        "surface-container-lowest": "#08090B",
+        "surface-container-low": "#17191D",
+        "surface-container": "#1f2022",
+        "surface-container-high": "#262A32",
+        "surface-container-highest": "#343537",
+        "surface": "#121315",
+        "surface-dim": "#121315",
+        "surface-bright": "#38393b",
+        "on-surface": "#e3e2e5",
+        "on-surface-variant": "#92969E",
+        "cold-border": "#2C3038",
+        "outline": "#8d947a",
+        "outline-variant": "#434934",
+        "secondary": "#c6c6cb",
+        "secondary-container": "#4a4b50",
+      },
+      fontFamily: {
+        headline: ["'Space Grotesk'", "sans-serif"],
+        display: ["'Space Grotesk'", "sans-serif"],
+        body: ["'Inter'", "sans-serif"],
+        mono: ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "monospace"],
+      },
+      borderRadius: {
+        DEFAULT: "0.25rem",
+        sm: "0.125rem",
+        md: "0.25rem",
+        lg: "0.375rem",
+        xl: "0.5rem",
+        full: "9999px",
+      },
+      spacing: {
+        "space-xs": "0.25rem",
+        "space-sm": "0.5rem",
+        "space-md": "1rem",
+        "space-lg": "1.5rem",
+        "space-xl": "2.5rem",
+      },
+    },
+  },
+  plugins: [],
+}
