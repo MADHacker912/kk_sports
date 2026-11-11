@@ -63,7 +63,7 @@ export const CATEGORIES: CategoryInfo[] = [
     tag: '05 · INDOOR GAMES',
     itemCount: '60+ Sets',
     description: 'Championship English Birch Carrom boards, tournament chess sets, TT tables, cues & accessories.',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBac2YFjzaoPP0ldvIEqdFFHX5VnWXsLqBEXokAarJgRGXMyyZ1TFNyD3VUdp-lHw_y8VjhsxE9B21pOIKxibSR15_FHmXlHv9QU0s1eXV5XJjTt1RoAEYsa3nrsdBg0CyHgRbrZLL3Y7ElOShwIWdGTYnw5nGvNTBkPc33KfNVqyQfiKSNfDs4WCkswzDQbdj7AWsYra3ODfkyv5PQw2KVl4-VUZTOPK4_wjEEqTe',
+    image: 'https://images.unsplash.com/photo-1652558973183-a3f046921163?auto=format&fit=crop&w=1200&q=80',
     featuredProductsCount: 19,
   },
   {
@@ -172,6 +172,7 @@ export const PRODUCTS: Product[] = [
     ],
     badge: 'COMMERCIAL HEAVY',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD7miVVh22vT80LTeaki7209kqdx7lFdI3rYq0R4GYAU_blDC7-UTLdt-TqrWmDsf7swSQtGve-J6guzCGcMaQJqmq8zWI24Cjx70xRebmCQkWr26Q78rzPMQVDDL7GdCzMLaYxOgfeozkIs6f5RXgkMdK09SGgHEwik6M-VETAPcvhNeWtxx-4YyVawPBP-xWoFt92YHK2MOXoLdcetH4hyeGbsAfDbNy5hi0AaFx5',
+    hoverImage: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80',
     features: [
       'No rubber odor; clean high-end matte finish',
       'Permanently press-welded head-to-handle joint',
@@ -194,7 +195,8 @@ export const PRODUCTS: Product[] = [
       { label: 'Pocket System', value: 'Heavy Woollen Knitted Drop Pockets' },
     ],
     badge: 'TOURNAMENT CERTIFIED',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBac2YFjzaoPP0ldvIEqdFFHX5VnWXsLqBEXokAarJgRGXMyyZ1TFNyD3VUdp-lHw_y8VjhsxE9B21pOIKxibSR15_FHmXlHv9QU0s1eXV5XJjTt1RoAEYsa3nrsdBg0CyHgRbrZLL3Y7ElOShwIWdGTYnw5nGvNTBkPc33KfNVqyQfiKSNfDs4WCkswzDQbdj7AWsYra3ODfkyv5PQw2KVl4-VUZTOPK4_wjEEqTe',
+    image: 'https://images.unsplash.com/photo-1652558973183-a3f046921163?auto=format&fit=crop&w=1200&q=80',
+    hoverImage: 'https://images.unsplash.com/photo-1534158914592-062992fbe900?auto=format&fit=crop&w=800&q=80',
     features: [
       'Includes tournament carrom coins, heavy striker & french boric powder',
       'Seasoned wood guarantees zero warping under climatic changes',
@@ -218,6 +220,7 @@ export const PRODUCTS: Product[] = [
     ],
     badge: 'YOUTH PRO',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBubd4XmHOkbpRgSoP97hGSwAndrD8fQ3pOSAKYy-t8Qbcu_PIT6pACK8qTGreiqclE-g1yYnKXYGoddAGIq3swcqDaIeSptF69D5cBOFzz9dJBEMBUzbtCU4sQ7-FMVuqogrzefUu5wLA8FKHAY7ohXHDcZf8CBUYl7s5dhKMoW8W4i54rwF7Y_9CjsQhWc00Lwqcy1RS367cEZqHAaGHeK2FmyhEAwmdfH4bj3Aus',
+    hoverImage: 'https://images.unsplash.com/photo-1562771242-a02d9090c90c?auto=format&fit=crop&w=800&q=80',
     features: [
       'Expandable push-button 4-size adjustment',
       'Breathable shock-absorbing liner removable for wash',
@@ -241,6 +244,7 @@ export const PRODUCTS: Product[] = [
     ],
     badge: 'TEST SERIES',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCXvqY8RZVnGVl6ajWV9Pxsei5QjQHldEqXn2ut-h9TH1JGT465zYYzwsRLTNkyhvqKDXp6Fff4xS5Afwa0hnzGQsuWvMuj2RYmPMmaC1Jo-7GOesAo8AYYxtHGdJ22Gh84fp0hgIkQ0GXh5G2_ZinVFWFekxmbqf2jF1gS_OT1UOKtN67aFGT1ZEaRR3G8DG81IUDbt8cCADkJ9LyYAnUzM6PpEr_OKJ4mSMXxHqQo',
+    hoverImage: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80',
     features: [
       'Instep protection with reinforced leather piping',
       'Tested against 150 km/h delivery impacts',
@@ -264,6 +268,7 @@ export const PRODUCTS: Product[] = [
     ],
     badge: 'CLUB STANDARD',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDGIWN039yz7GpypmMU0uIg2hddU9orYQmxkbSK3--WAzhdJVyKNCA3p0tuiQ8Dhu7syA04KcyDeWLqNQNXL2vzbdYLfN5Q0b1y9TXYEdzLsxBXkbHyGbpVCFaHB1h7bTE3oQaAyXG_ycQUb-DqZSBYnR_ohhu1an2VeLQOKKedcbWfCOVpj7j9UkByhQnf5awxDDYhv-AsF27M19Yz3hekKy3KDY2oPqxg0dPGSlBf',
+    hoverImage: 'https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?auto=format&fit=crop&w=800&q=80',
     features: [
       'Strict quality tested for flight trajectory consistency',
       'Resistant to feather brittleness under low humidity',
