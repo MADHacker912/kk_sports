@@ -100,7 +100,7 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[#E2DFD6] pb-8">
           <div>
             <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#52634B] mb-2 block font-semibold">
-              CATALOGUE ARCHIVE // VERIFIED STOCK
+              CATALOGUE ARCHIVE · VERIFIED STOCK
             </span>
             <h2 className="font-headline text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#272923] flex flex-wrap gap-x-3">
               {titleWords.map((word, idx) => (

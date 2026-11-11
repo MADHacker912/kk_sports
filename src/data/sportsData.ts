@@ -24,7 +24,7 @@ export const CATEGORIES: CategoryInfo[] = [
   {
     id: 'football',
     title: 'Football & Outdoor',
-    tag: '01 // FOOTBALL & OUTDOOR',
+    tag: '01 · FOOTBALL & OUTDOOR',
     itemCount: '180+ Pro Items',
     description: 'Match balls, goalkeeper armor, boots, tactical agility cones, and field tournament kits.',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDg-57mYNg0yzC5_hI0p65GE7Xm12bqqiicwTj-DJsYQi52-RMVaJkLUYFJo9miJgcxXKHCzUZkqqsbbIsh-e39RE3A5vr0qIuUotbUItyvFq7QDedaOHpp0tZQi2cUYU5BnfRnplZYRSIvQdpjl62t3jV4psjFF0GpiDimN2vV4CvqQ4k05Y1lwAmPglFDtb0F-7SURp7AHqcc0y_ZzoSFFvos5gmwL5uHv7_PI3ba',
@@ -33,7 +33,7 @@ export const CATEGORIES: CategoryInfo[] = [
   {
     id: 'cricket',
     title: 'Cricket Pro Lab',
-    tag: '02 // CRICKET PRO LAB',
+    tag: '02 · CRICKET PRO LAB',
     itemCount: '340+ Pro Items',
     description: 'Grade-1 English Willow, Kashmir Willow, custom machine knocking, test match pads, and leather gear.',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAIpwHpkeSILKoWrlSa4ZzdnwoQC4EegQ25LhWnVuQO2NZnC1ArZrnX86w8RXD4PB8yLGaE_bFcFGrhm4n-5OhvS2-E-5HHuUjx0i0vKPwMOv6o1nVIaALPaabKTICVPmJUEG3GmckAKwr2GDQOUm0Y37U9ZBYU0TTV87s4FBkAR8fhxshdQ-wAy5XZyEm3DpUxrKMxtu4PUPS-OOm_yWJm4Q4DdbjyCm73Ca8kuzdP',
@@ -42,7 +42,7 @@ export const CATEGORIES: CategoryInfo[] = [
   {
     id: 'badminton',
     title: 'Rackets & Court Sports',
-    tag: '03 // RACKETS & COURT',
+    tag: '03 · RACKETS & COURT',
     itemCount: '120+ Pro Items',
     description: 'High-modulus carbon badminton & tennis rackets, tournament shuttles, court footwear & restringing atelier.',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDKZw483f00H06fd-0lINbmbnxVu2DDYShsV7kY0bB-3EbPPpMZZItLj2a7n9Ox-ZEDZUe4JiULWnA8eSeSwavR9S8S-5tm87eeRz0righOtCe-sC_kSop6CFhrGZFu06AuzKZPPFQXDYhjagKUx_WIe-dVIA55cFPXdVVD2oXykoNxtNJfzWOoVW_VBzANxIoOmIzykNN3JAIvMlq4HfcSDdwFTmtwrvq6FjhJc2Gb',
@@ -51,7 +51,7 @@ export const CATEGORIES: CategoryInfo[] = [
   {
     id: 'fitness',
     title: 'Fitness & Conditioning',
-    tag: '04 // FITNESS LAB',
+    tag: '04 · FITNESS LAB',
     itemCount: '95+ Units',
     description: 'Urethane hex dumbbells, Olympic bars, resistance bands, power racks, and athlete recovery gear.',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD7miVVh22vT80LTeaki7209kqdx7lFdI3rYq0R4GYAU_blDC7-UTLdt-TqrWmDsf7swSQtGve-J6guzCGcMaQJqmq8zWI24Cjx70xRebmCQkWr26Q78rzPMQVDDL7GdCzMLaYxOgfeozkIs6f5RXgkMdK09SGgHEwik6M-VETAPcvhNeWtxx-4YyVawPBP-xWoFt92YHK2MOXoLdcetH4hyeGbsAfDbNy5hi0AaFx5',
@@ -60,7 +60,7 @@ export const CATEGORIES: CategoryInfo[] = [
   {
     id: 'indoor',
     title: 'Indoor & Board Games',
-    tag: '05 // INDOOR GAMES',
+    tag: '05 · INDOOR GAMES',
     itemCount: '60+ Sets',
     description: 'Championship English Birch Carrom boards, tournament chess sets, TT tables, cues & accessories.',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBac2YFjzaoPP0ldvIEqdFFHX5VnWXsLqBEXokAarJgRGXMyyZ1TFNyD3VUdp-lHw_y8VjhsxE9B21pOIKxibSR15_FHmXlHv9QU0s1eXV5XJjTt1RoAEYsa3nrsdBg0CyHgRbrZLL3Y7ElOShwIWdGTYnw5nGvNTBkPc33KfNVqyQfiKSNfDs4WCkswzDQbdj7AWsYra3ODfkyv5PQw2KVl4-VUZTOPK4_wjEEqTe',
@@ -69,7 +69,7 @@ export const CATEGORIES: CategoryInfo[] = [
   {
     id: 'toys',
     title: 'Recreational & Toys',
-    tag: '06 // TOYS & RECREATION',
+    tag: '06 · TOYS & RECREATION',
     itemCount: '150+ Items',
     description: 'Precision roller skates, skateboards, scooters, recreational sports kits, and junior athlete activity toys.',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBubd4XmHOkbpRgSoP97hGSwAndrD8fQ3pOSAKYy-t8Qbcu_PIT6pACK8qTGreiqclE-g1yYnKXYGoddAGIq3swcqDaIeSptF69D5cBOFzz9dJBEMBUzbtCU4sQ7-FMVuqogrzefUu5wLA8FKHAY7ohXHDcZf8CBUYl7s5dhKMoW8W4i54rwF7Y_9CjsQhWc00Lwqcy1RS367cEZqHAaGHeK2FmyhEAwmdfH4bj3Aus',

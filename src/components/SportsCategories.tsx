@@ -139,7 +139,7 @@ export const SportsCategories: React.FC<SportsCategoriesProps> = ({ onSelectCate
         >
           <div>
             <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#66785F] mb-2 block font-semibold">
-              COLLECTION DIRECTORY // STACKED ARCHIVE
+              COLLECTION DIRECTORY · STACKED ARCHIVE
             </span>
             <h2 className="font-headline text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#272923]">
               Sports Categories
@@ -175,7 +175,7 @@ export const SportsCategories: React.FC<SportsCategoriesProps> = ({ onSelectCate
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <span className={`font-mono text-xs font-semibold px-3 py-1 rounded-full ${theme.numBadge} text-[#272923] border ${theme.border} shadow-sm`}>
-                          {String(idx + 1).padStart(2, '0')} // 06
+                          {String(idx + 1).padStart(2, '0')} · 06
                         </span>
                         <span className="font-mono text-xs uppercase tracking-wider text-[#77776F]">
                           {cat.itemCount}

@@ -150,7 +150,7 @@ export const BrandIntroduction: React.FC = () => {
         <div ref={rightColRef} className="lg:col-span-7 order-1 lg:order-2 flex flex-col justify-center gap-6">
           <div>
             <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#52634B] mb-3 block font-semibold">
-              ABOUT K.K. SPORTS // KANPUR
+              ABOUT K.K. SPORTS · KANPUR
             </span>
 
             {/* Headline with Mask Reveal on each word */}

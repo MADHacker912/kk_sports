@@ -131,7 +131,7 @@ export const HeroSection: React.FC = () => {
 
               {/* Subtle caption pill */}
               <div className="absolute bottom-4 left-4 px-3 py-1.5 rounded-lg bg-white/95 backdrop-blur-sm border border-[#DDD8CC] text-xs text-[#272923] font-body shadow-sm z-20 pointer-events-none">
-                Grand Touring 3D Specimen // 360° Auto-Rotation
+                Ford Mustang GT Specimen · 360° Auto-Rotation
               </div>
             </div>
           </div>

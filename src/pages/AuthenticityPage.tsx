@@ -9,7 +9,7 @@ export const AuthenticityPage: React.FC = () => {
       <div className="max-w-5xl mx-auto mb-16">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#EAE6DC] border border-[#DDD8CC] text-xs font-headline font-semibold text-[#52634B] tracking-wide mb-6">
           <ShieldCheck className="w-3.5 h-3.5 text-[#52634B]" />
-          <span>ZERO COUNTERFEIT PLEDGE // K.K. SPORTS KANPUR</span>
+          <span>ZERO COUNTERFEIT PLEDGE · K.K. SPORTS KANPUR</span>
         </div>
 
         <h1 className="font-headline text-3xl sm:text-5xl font-bold tracking-tight text-[#272923] leading-tight mb-6">

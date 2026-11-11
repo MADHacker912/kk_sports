@@ -23,7 +23,7 @@ const ANGLE_PROFILES: AngleProfile[] = [
     label: '0° Front Face',
     title: 'Unbleached Straight Grain Face',
     description: '10 to 12 razor-straight, unbroken grains across the primary driving zone. Sussex Grade-1 English Willow naturally seasoned in controlled humidity.',
-    metric: '10–12 Straight Grains // Unblemished Driving Zone',
+    metric: '10–12 Straight Grains · Unblemished Driving Zone',
     bgTone: '#E7EBE2', // Muted Sage
     badgeTone: 'bg-[#66785F]/15 text-[#3F4F39]',
   },
@@ -32,7 +32,7 @@ const ANGLE_PROFILES: AngleProfile[] = [
     label: '90° Edge Profile',
     title: '40mm Contoured Power Edges',
     description: 'Generous 39-41mm edges providing maximum mass and forgiveness on off-center toe cuts and power drives through cover.',
-    metric: '40mm Power Edge // Feathered Duckbill Profile',
+    metric: '40mm Power Edge · Feathered Duckbill Profile',
     bgTone: '#E1E7DC', // Soft Leaf Sage
     badgeTone: 'bg-[#506347]/15 text-[#374530]',
   },
@@ -41,7 +41,7 @@ const ANGLE_PROFILES: AngleProfile[] = [
     label: '180° Spine Contour',
     title: 'Mid-to-Low Power Bulge',
     description: 'Spine calibrated for sub-continent bounce and low-maintenance turf tracks. Maximum mass concentrated directly behind the sweet spot.',
-    metric: '64mm Peak Spine // Counter-Balanced Pickup',
+    metric: '64mm Peak Spine · Counter-Balanced Pickup',
     bgTone: '#EAE5DC', // Warm Sand
     badgeTone: 'bg-[#736453]/15 text-[#4E4133]',
   },
@@ -50,7 +50,7 @@ const ANGLE_PROFILES: AngleProfile[] = [
     label: '270° Cane Handle',
     title: '9-Piece Singapore Cane Handle',
     description: 'Triple rubber-cushioned spring laminate handle wrapped in soft chevron traction grip for superior vibration suppression.',
-    metric: 'Triple Rubber Cushion // Zero Sting Resonance',
+    metric: 'Triple Rubber Cushion · Zero Sting Resonance',
     bgTone: '#E5E2DA', // Soft Stone
     badgeTone: 'bg-[#596354]/15 text-[#3E453A]',
   },
@@ -141,7 +141,7 @@ export const AeroStrike360Viewer: React.FC = () => {
             <div>
               <div className="flex items-center gap-3 mb-2">
                 <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#52634B] font-semibold">
-                  SIGNATURE ATELIER // PINNED STORYTELLING
+                  SIGNATURE ATELIER · PINNED STORYTELLING
                 </span>
                 <span className="hidden lg:inline-flex font-mono text-[11px] text-[#272923] bg-white/80 px-2.5 py-0.5 rounded border border-[#272923]/10">
                   Scroll to Inspect (360°)
@@ -222,7 +222,7 @@ export const AeroStrike360Viewer: React.FC = () => {
               <div className="p-6 sm:p-8 rounded-2xl bg-[#FAF9F5] border border-[#DDD8CC] flex flex-col gap-3 shadow-[0_4px_16px_rgba(39,41,35,0.03)] transition-all duration-300">
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-xs uppercase tracking-wider text-[#52634B] font-semibold">
-                    CRAFT ANALYSIS // STAGE {currentAngleIndex + 1} OF 4
+                    CRAFT ANALYSIS · STAGE {currentAngleIndex + 1} OF 4
                   </span>
                   <span className="font-mono text-xs text-[#77776F]">
                     {activeProfile.angle}° Rotation

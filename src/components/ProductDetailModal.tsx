@@ -44,7 +44,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
         {/* Top Header */}
         <div className="flex items-center justify-between px-6 py-4 bg-[#F1EFE8] border-b border-[#DDD8CC]">
           <span className="font-mono text-xs uppercase tracking-wider text-[#77776F]">
-            Product Details // {product.categoryLabel}
+            Product Details · {product.categoryLabel}
           </span>
 
           <button

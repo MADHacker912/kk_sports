@@ -7,7 +7,7 @@ export const TermsPage: React.FC = () => {
       <div className="max-w-4xl mx-auto">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#EAE6DC] border border-[#DDD8CC] text-xs font-headline font-semibold text-[#52634B] tracking-wide mb-6">
           <FileText className="w-3.5 h-3.5 text-[#52634B]" />
-          <span>LEGAL COMPLIANCE // STORE TERMS &amp; POLICIES</span>
+          <span>LEGAL COMPLIANCE · STORE TERMS &amp; POLICIES</span>
         </div>
 
         <h1 className="font-headline text-3xl sm:text-4xl font-bold tracking-tight text-[#272923] mb-4">

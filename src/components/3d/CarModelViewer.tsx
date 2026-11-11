@@ -87,68 +87,72 @@ export const CarModelViewer: React.FC<CarModelViewerProps> = ({
     scene.add(modelGroup);
     modelGroupRef.current = modelGroup;
 
-    // 4. Load GLB
+    // 4. Load GLB (Primary: Ford Mustang GLB)
     const loader = new GLTFLoader();
-    const modelPath = '/models/sports-car.glb';
+    const modelPath = '/models/mustang.glb';
+
+    const handleLoadedGltf = (gltf: any) => {
+      if (isDisposed) return;
+
+      const root = gltf.scene;
+
+      // Accurately center and normalize the scale of the model
+      const box = new THREE.Box3().setFromObject(root);
+      const center = box.getCenter(new THREE.Vector3());
+      const size = box.getSize(new THREE.Vector3());
+
+      const maxDim = Math.max(size.x, size.y, size.z);
+      const scaleFactor = maxDim > 10 ? 2.8 / maxDim : (maxDim < 1 ? 2.8 / maxDim : 1);
+      root.scale.setScalar(scaleFactor);
+
+      root.position.x = -center.x * scaleFactor;
+      root.position.y = -center.y * scaleFactor;
+      root.position.z = -center.z * scaleFactor;
+
+      if (shadowPlane) {
+        shadowPlane.position.y = (-size.y * scaleFactor) / 2 - 0.02;
+      }
+
+      root.traverse((child: THREE.Object3D) => {
+        if ((child as THREE.Mesh).isMesh) {
+          const mesh = child as THREE.Mesh;
+          mesh.castShadow = true;
+          mesh.receiveShadow = true;
+
+          if (mesh.material) {
+            const mat = mesh.material as THREE.MeshStandardMaterial;
+            mat.envMapIntensity = 1.4;
+
+            // Give sports car body a sleek metallic finish
+            const matName = (mat.name || '').toLowerCase();
+            if (matName.includes('body') || matName.includes('paint') || matName.includes('car')) {
+              mat.roughness = 0.2;
+              mat.metalness = 0.8;
+            }
+          }
+        }
+      });
+
+      modelGroup.add(root);
+
+      // Frame camera elevated perspective
+      camera.position.set(2.8, 1.4, 3.2);
+      camera.lookAt(0, 0, 0);
+
+      setLoading(false);
+    };
 
     loader.load(
       modelPath,
-      (gltf) => {
-        if (isDisposed) return;
-
-        const root = gltf.scene;
-
-        // Center the geometry
-        const box = new THREE.Box3().setFromObject(root);
-        const center = box.getCenter(new THREE.Vector3());
-        const size = box.getSize(new THREE.Vector3());
-
-        root.position.x = -center.x;
-        root.position.y = -center.y + 0.1;
-        root.position.z = -center.z;
-
-        shadowPlane.position.y = -size.y / 2 - 0.02;
-
-        root.traverse((child) => {
-          if ((child as THREE.Mesh).isMesh) {
-            const mesh = child as THREE.Mesh;
-            mesh.castShadow = true;
-            mesh.receiveShadow = true;
-
-            if (mesh.material) {
-              const mat = mesh.material as THREE.MeshStandardMaterial;
-              mat.envMapIntensity = 1.4;
-
-              // Give sports car body a sleek metallic finish
-              if (mat.name.toLowerCase().includes('body')) {
-                mat.roughness = 0.18;
-                mat.metalness = 0.85;
-              }
-            }
-          }
-        });
-
-        modelGroup.add(root);
-
-        // Frame camera to capture the full car with safe margins
-        const maxDim = Math.max(size.x, size.y, size.z);
-        const fov = camera.fov * (Math.PI / 180);
-        let cameraDist = Math.abs(maxDim / (2 * Math.tan(fov / 2))) * 1.35;
-        cameraDist = Math.max(cameraDist, 5.2);
-
-        camera.position.set(cameraDist * 0.7, cameraDist * 0.35, cameraDist * 0.8);
-        camera.lookAt(0, 0, 0);
-
-        setLoading(false);
-      },
+      handleLoadedGltf,
       (xhr) => {
         if (xhr.total > 0) {
           setLoadProgress(Math.round((xhr.loaded / xhr.total) * 100));
         }
       },
       (err) => {
-        console.error('Error loading sports car GLB:', err);
-        setLoading(false);
+        console.warn('Primary mustang GLB load note, falling back to sports-car.glb:', err);
+        loader.load('/models/sports-car.glb', handleLoadedGltf);
       }
     );
 

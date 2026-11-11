@@ -10,7 +10,7 @@ export const AboutPage: React.FC = () => {
       <div className="max-w-5xl mx-auto mb-16 sm:mb-24">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#EAE6DC] border border-[#DDD8CC] text-xs font-headline font-semibold text-[#52634B] tracking-wide mb-6">
           <span className="w-2 h-2 rounded-full bg-[#52634B]" />
-          <span>HERITAGE &amp; VALUES // EST. PARADE, KANPUR</span>
+          <span>HERITAGE &amp; VALUES · EST. PARADE, KANPUR</span>
         </div>
 
         <h1 className="font-headline text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#272923] leading-tight mb-6">

@@ -76,7 +76,7 @@ export const HorizontalEquipmentGallery: React.FC<HorizontalEquipmentGalleryProp
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[#272923]/10 pb-6">
             <div>
               <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#52634B] mb-2 block font-semibold">
-                CHAMPIONSHIP EDITIONS // HORIZONTAL GALLERY
+                CHAMPIONSHIP EDITIONS · HORIZONTAL GALLERY
               </span>
               <h2 className="font-headline text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#272923]">
                 Flagship Equipment Reel
@@ -117,7 +117,7 @@ export const HorizontalEquipmentGallery: React.FC<HorizontalEquipmentGalleryProp
                 {/* Top Badge & Number */}
                 <div className="flex items-center justify-between z-10">
                   <span className="font-mono text-xs uppercase tracking-wider text-[#77776F] bg-[#F1EFE8] px-2.5 py-1 rounded-md border border-[#DDD8CC]">
-                    0{idx + 1} // {product.category.toUpperCase()}
+                    0{idx + 1} · {product.category.toUpperCase()}
                   </span>
                   {product.badge && (
                     <span className="font-mono text-[11px] uppercase tracking-wider text-[#52634B] font-semibold bg-[#52634B]/10 px-2.5 py-1 rounded-md">

@@ -62,7 +62,7 @@ export const KanpurFlagshipStore: React.FC = () => {
         >
           <div>
             <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#52634B] mb-2 block font-semibold">
-              FLAGSHIP LOCATION // MESTON ROAD
+              FLAGSHIP LOCATION · MESTON ROAD
             </span>
             <h2 className="font-headline text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#272923]">
               Visit Kanpur Flagship

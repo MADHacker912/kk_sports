@@ -14,7 +14,7 @@ export const NotFoundPage: React.FC<NotFoundPageProps> = ({ onOpenSearch }) => {
         {/* Editorial Sub-badge */}
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EAE6DC] border border-[#DDD8CC] text-xs font-headline font-semibold text-[#52634B] tracking-wide mb-8">
           <span className="w-2 h-2 rounded-full bg-[#52634B] animate-pulse" />
-          <span>MATCHPLAY NOTICE // CODE 404</span>
+          <span>MATCHPLAY NOTICE · CODE 404</span>
         </div>
 
         {/* Bespoke Boundary Marker Graphics */}
