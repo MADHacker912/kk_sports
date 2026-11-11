@@ -9,7 +9,7 @@ export const FloatingWhatsApp: React.FC = () => {
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`Chat on WhatsApp with K.K. Sports (${DISPLAY_PHONE})`}
-        className="flex items-center justify-center w-12 h-12 rounded-full bg-[#25D366] text-black shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+        className="flex items-center justify-center w-12 h-12 rounded-full bg-[#25D366] text-white shadow-md hover:scale-105 active:scale-95 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#242720]"
       >
         <svg
           className="w-6 h-6 fill-white"

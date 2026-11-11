@@ -5,35 +5,36 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    color-scheme: dark;
-    background-color: #08090B;
+    background-color: #F8F7F3;
+    color: #242720;
   }
   
   body {
-    background-color: #08090B;
-    color: #e3e2e5;
-    font-family: 'Inter', sans-serif;
+    background-color: #F8F7F3;
+    color: #242720;
+    font-family: 'DM Sans', 'Inter', sans-serif;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Custom subtle scrollbar */
+  /* Soft, clean scrollbar */
   ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #08090B;
+    background: #F8F7F3;
   }
   ::-webkit-scrollbar-thumb {
-    background: #262A32;
+    background: #E7E5DE;
     border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #C6FF35;
+    background: #66785F;
   }
 }
 
-/* Hide scrollbar for clean tab carousels */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }

@@ -26,20 +26,20 @@ export const App: React.FC = () => {
   };
 
   const handleScrollTo360 = () => {
-    const element = document.getElementById('aero-strike-360');
+    const element = document.getElementById('signature-atelier');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
-    <div className="min-h-screen bg-[#08090B] text-[#E3E2E5] flex flex-col relative selection:bg-[#C6FF35] selection:text-black">
+    <div className="min-h-screen bg-[#F8F7F3] text-[#242720] flex flex-col relative selection:bg-[#66785F] selection:text-white">
       {/* 1. Minimal Premium Navigation */}
       <Navigation onOpenSearch={() => setSearchModalOpen(true)} />
 
       {/* Main Content Area */}
       <main className="flex-1 w-full flex flex-col">
-        {/* 2. Strong Hero Section */}
+        {/* 2. Editorial Hero Section */}
         <HeroSection />
 
         {/* 3. Brand Introduction */}
@@ -55,17 +55,17 @@ export const App: React.FC = () => {
           onSelectProduct={setSelectedProduct}
         />
 
-        {/* 6. One Signature Visual Storytelling Section (3D & Motion) */}
+        {/* 6. Signature Storytelling & 360 Atelier */}
         <AeroStrike360Viewer />
 
-        {/* 7. Store Location and Contact */}
+        {/* 7. Store Location & Contact */}
         <KanpurFlagshipStore />
       </main>
 
       {/* 8. Minimal Footer */}
       <Footer />
 
-      {/* Discreet Floating WhatsApp Trigger */}
+      {/* Subtle Floating WhatsApp Trigger */}
       <FloatingWhatsApp />
 
       {/* Product Detail Modal */}
