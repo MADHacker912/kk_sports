@@ -24,6 +24,7 @@ export interface Product {
   specs: ProductSpec[];
   badge?: string;
   image: string;
+  hoverImage?: string;
   features: string[];
   inStock: boolean;
   isFlagship360?: boolean;

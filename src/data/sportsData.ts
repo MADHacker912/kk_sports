@@ -96,6 +96,7 @@ export const PRODUCTS: Product[] = [
     ],
     badge: 'FLAGSHIP 360°',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAIpwHpkeSILKoWrlSa4ZzdnwoQC4EegQ25LhWnVuQO2NZnC1ArZrnX86w8RXD4PB8yLGaE_bFcFGrhm4n-5OhvS2-E-5HHuUjx0i0vKPwMOv6o1nVIaALPaabKTICVPmJUEG3GmckAKwr2GDQOUm0Y37U9ZBYU0TTV87s4FBkAR8fhxshdQ-wAy5XZyEm3DpUxrKMxtu4PUPS-OOm_yWJm4Q4DdbjyCm73Ca8kuzdP',
+    hoverImage: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80',
     features: [
       'Interactive 360° Studio inspection available',
       'Complimentary multi-tier mallet knocking at Kanpur workshop',
@@ -122,6 +123,7 @@ export const PRODUCTS: Product[] = [
     ],
     badge: 'MATCH GRADE',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDotxXFfjkvYn_7A6Pvxojwx6pr-UnQIIigIx_l0CBzQAGLz_pkRj38UTpPWj03c_qRFJp4itAEYW2rOkmFIUGn3jUfo6gWcPzTklgKeSc_DeyQb0rNPoCwS7x6uRjjLq5SidKSDTSoW9SRwXaalaytzG21rvyXaTUFm8i4Ra2dXKBdL9RAjqf8sO3CZ_FXICJ5iEaL468cQIr0z_zWNfhV4D2uMROZXm_iKp1N-bQW',
+    hoverImage: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=800&q=80',
     features: [
       'Zero stitch seams prevent moisture accumulation',
       'Tested for over 2,000 high-speed rebound cycles',
@@ -146,6 +148,7 @@ export const PRODUCTS: Product[] = [
     ],
     badge: 'AERO SPEED',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDKZw483f00H06fd-0lINbmbnxVu2DDYShsV7kY0bB-3EbPPpMZZItLj2a7n9Ox-ZEDZUe4JiULWnA8eSeSwavR9S8S-5tm87eeRz0righOtCe-sC_kSop6CFhrGZFu06AuzKZPPFQXDYhjagKUx_WIe-dVIA55cFPXdVVD2oXykoNxtNJfzWOoVW_VBzANxIoOmIzykNN3JAIvMlq4HfcSDdwFTmtwrvq6FjhJc2Gb',
+    hoverImage: 'https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?auto=format&fit=crop&w=800&q=80',
     features: [
       'In-house computer-controlled electronic restringing service',
       'Vibration damping core grommets',

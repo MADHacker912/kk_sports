@@ -3,6 +3,7 @@ import { Navigation } from './components/Navigation';
 import { HeroSection } from './components/HeroSection';
 import { BrandIntroduction } from './components/BrandIntroduction';
 import { SportsCategories } from './components/SportsCategories';
+import { HorizontalEquipmentGallery } from './components/HorizontalEquipmentGallery';
 import { ProductCatalogue } from './components/ProductCatalogue';
 import { AeroStrike360Viewer } from './components/AeroStrike360Viewer';
 import { KanpurFlagshipStore } from './components/KanpurFlagshipStore';
@@ -42,27 +43,30 @@ export const App: React.FC = () => {
         {/* 2. Editorial Hero Section */}
         <HeroSection />
 
-        {/* 3. Brand Introduction */}
+        {/* 3. Brand Introduction with Image Expansion & Split Screen */}
         <BrandIntroduction />
 
-        {/* 4. Sports Categories */}
+        {/* 4. Sports Categories Stacked Cards */}
         <SportsCategories onSelectCategory={handleSelectCategory} />
 
-        {/* 5. Featured Products */}
+        {/* 5. Scroll-Controlled Horizontal Equipment Gallery */}
+        <HorizontalEquipmentGallery onSelectProduct={setSelectedProduct} />
+
+        {/* 6. Featured Products with Hover Swap & Interactions */}
         <ProductCatalogue
           activeCategory={activeCategory}
           onCategoryChange={setActiveCategory}
           onSelectProduct={setSelectedProduct}
         />
 
-        {/* 6. Signature Storytelling & 360 Atelier */}
+        {/* 7. Signature Sticky Storytelling & 360 Atelier */}
         <AeroStrike360Viewer />
 
-        {/* 7. Store Location & Contact */}
+        {/* 8. Store Location & Contact */}
         <KanpurFlagshipStore />
       </main>
 
-      {/* 8. Minimal Footer */}
+      {/* 9. Grounded Minimal Footer */}
       <Footer />
 
       {/* Subtle Floating WhatsApp Trigger */}

@@ -26,6 +26,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenSearch }) => {
   const navLinks = [
     { name: 'Collection', href: '#featured-collection' },
     { name: 'Categories', href: '#sports-categories' },
+    { name: 'Gallery', href: '#horizontal-gallery' },
     { name: 'Cricket Atelier', href: '#signature-atelier' },
     { name: 'About', href: '#brand-introduction' },
     { name: 'Kanpur Store', href: '#store-location' },
