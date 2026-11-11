@@ -1,11 +1,13 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, MapPin } from 'lucide-react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { FootballHeroViewer } from './3d/FootballHeroViewer';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export const HeroSection: React.FC = () => {
+  const [heroView, setHeroView] = useState<'3d' | 'photo'>('3d');
   const sectionRef = useRef<HTMLElement | null>(null);
   const headlineRef = useRef<HTMLHeadingElement | null>(null);
   const descRef = useRef<HTMLParagraphElement | null>(null);
@@ -142,24 +144,58 @@ export const HeroSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Editorial Sports Photography with Parallax & Mask (6 cols) */}
+          {/* Right Column: 3D Match Ball / Editorial Sports Photography (6 cols) */}
           <div className="lg:col-span-6">
             <div
               ref={imageContainerRef}
-              className="relative aspect-[4/3] sm:aspect-[16/11] w-full rounded-2xl overflow-hidden bg-[#F1EFE8] border border-[#DDD8CC] shadow-[0_8px_30px_rgba(39,41,35,0.06)]"
+              className="relative aspect-[4/3] sm:aspect-[16/11] w-full rounded-2xl overflow-hidden bg-[#F1EFE8] border border-[#DDD8CC] shadow-[0_8px_30px_rgba(39,41,35,0.06)] flex items-center justify-center"
             >
-              <img
-                ref={imageRef}
-                src="https://images.unsplash.com/photo-1531415074868-036b1c57e329?auto=format&fit=crop&w=1400&q=80"
-                alt="Athletic preparation and sports equipment in natural sunlight"
-                className="w-full h-full object-cover object-center filter contrast-[1.02] will-change-transform"
-                loading="eager"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
+              {/* Interactive View Switcher Tabs */}
+              <div className="absolute top-4 right-4 z-20 flex items-center gap-1 p-1 rounded-xl bg-white/90 backdrop-blur-sm border border-[#DDD8CC] shadow-xs">
+                <button
+                  onClick={() => setHeroView('3d')}
+                  className={`px-3 py-1 rounded-lg font-headline text-xs font-semibold transition-all ${
+                    heroView === '3d'
+                      ? 'bg-[#272923] text-white shadow-xs'
+                      : 'text-[#77776F] hover:text-[#272923]'
+                  }`}
+                >
+                  3D Match Ball
+                </button>
+                <button
+                  onClick={() => setHeroView('photo')}
+                  className={`px-3 py-1 rounded-lg font-headline text-xs font-semibold transition-all ${
+                    heroView === 'photo'
+                      ? 'bg-[#272923] text-white shadow-xs'
+                      : 'text-[#77776F] hover:text-[#272923]'
+                  }`}
+                >
+                  Editorial Photo
+                </button>
+              </div>
+
+              {heroView === '3d' ? (
+                <div className="w-full h-full p-4">
+                  <FootballHeroViewer className="w-full h-full" />
+                </div>
+              ) : (
+                <>
+                  <img
+                    ref={imageRef}
+                    src="https://images.unsplash.com/photo-1531415074868-036b1c57e329?auto=format&fit=crop&w=1400&q=80"
+                    alt="Athletic preparation and sports equipment in natural sunlight"
+                    className="w-full h-full object-cover object-center filter contrast-[1.02] will-change-transform"
+                    loading="eager"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
+                </>
+              )}
 
               {/* Subtle caption pill */}
-              <div className="absolute bottom-4 left-4 px-3 py-1.5 rounded-lg bg-white/95 backdrop-blur-sm border border-[#DDD8CC] text-xs text-[#272923] font-body shadow-sm">
-                Curated for competitive athletes &amp; sports enthusiasts
+              <div className="absolute bottom-4 left-4 px-3 py-1.5 rounded-lg bg-white/95 backdrop-blur-sm border border-[#DDD8CC] text-xs text-[#272923] font-body shadow-sm z-20">
+                {heroView === '3d'
+                  ? 'FIFA Quality Pro Standard 3D Geometry'
+                  : 'Curated for competitive athletes & sports enthusiasts'}
               </div>
             </div>
           </div>

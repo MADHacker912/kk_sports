@@ -3,6 +3,7 @@ import { getProductInquiryUrl } from '../utils/whatsapp';
 import { RotateCw, MessageSquare, ArrowRight } from 'lucide-react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { CricketModelViewer } from './3d/CricketModelViewer';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -182,20 +183,13 @@ export const AeroStrike360Viewer: React.FC = () => {
                   </span>
                 </div>
 
-                {/* Bat Presentation with Smooth CSS / GSAP Rotation */}
-                <div className="relative flex-1 flex flex-col items-center justify-center py-4 perspective-[1000px]">
-                  <img
-                    ref={batImgRef}
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIpwHpkeSILKoWrlSa4ZzdnwoQC4EegQ25LhWnVuQO2NZnC1ArZrnX86w8RXD4PB8yLGaE_bFcFGrhm4n-5OhvS2-E-5HHuUjx0i0vKPwMOv6o1nVIaALPaabKTICVPmJUEG3GmckAKwr2GDQOUm0Y37U9ZBYU0TTV87s4FBkAR8fhxshdQ-wAy5XZyEm3DpUxrKMxtu4PUPS-OOm_yWJm4Q4DdbjyCm73Ca8kuzdP"
-                    alt="Aero-Strike Pro Cricket Bat 360 View"
-                    className="max-h-[82%] w-auto object-contain transition-transform duration-300 filter contrast-[1.04] drop-shadow-[0_16px_24px_rgba(39,41,35,0.18)] will-change-transform z-10"
-                    style={{
-                      transform: `rotateY(${rotationDeg}deg)`,
-                    }}
+                {/* Real 3D Cricket Model Presentation with Fallback */}
+                <div className="relative flex-1 flex flex-col items-center justify-center py-2 min-h-[300px]">
+                  <CricketModelViewer
+                    rotationDeg={rotationDeg}
+                    fallbackImage="https://lh3.googleusercontent.com/aida-public/AB6AXuAIpwHpkeSILKoWrlSa4ZzdnwoQC4EegQ25LhWnVuQO2NZnC1ArZrnX86w8RXD4PB8yLGaE_bFcFGrhm4n-5OhvS2-E-5HHuUjx0i0vKPwMOv6o1nVIaALPaabKTICVPmJUEG3GmckAKwr2GDQOUm0Y37U9ZBYU0TTV87s4FBkAR8fhxshdQ-wAy5XZyEm3DpUxrKMxtu4PUPS-OOm_yWJm4Q4DdbjyCm73Ca8kuzdP"
+                    className="w-full h-full"
                   />
-
-                  {/* Soft Ground Contact Shadow */}
-                  <div className="w-48 h-4 bg-[#272923]/12 blur-md rounded-full mt-2 pointer-events-none" />
 
                   {/* Metric pill */}
                   <div className="mt-2 px-3 py-1.5 rounded-full bg-white/95 border border-[#DDD8CC] font-body text-xs text-[#77776F] shadow-sm whitespace-nowrap z-20">

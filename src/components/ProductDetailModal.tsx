@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Product } from '../types';
 import { getProductInquiryUrl, DISPLAY_PHONE } from '../utils/whatsapp';
-import { X, MessageSquare, Phone, ShieldCheck, Check, Sparkles } from 'lucide-react';
+import { X, MessageSquare, Phone, ShieldCheck, Check, Sparkles, Box } from 'lucide-react';
+import { CricketModelViewer } from './3d/CricketModelViewer';
+import { BadmintonModelViewer } from './3d/BadmintonModelViewer';
+import { FootballHeroViewer } from './3d/FootballHeroViewer';
+import { FitnessDumbbellViewer } from './3d/FitnessDumbbellViewer';
 
 interface ProductDetailModalProps {
   product: Product | null;
@@ -14,9 +18,12 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
   onClose,
   onOpen360,
 }) => {
+  const [view3D, setView3D] = useState(false);
+
   if (!product) return null;
 
   const inquiryUrl = getProductInquiryUrl(product.name);
+  const has3DModel = ['cricket', 'badminton', 'football', 'fitness'].includes(product.category);
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
@@ -53,18 +60,71 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 p-6 sm:p-8">
           {/* Left Column: Image & Media (5 cols) */}
           <div className="md:col-span-5 flex flex-col gap-4">
-            <div className="relative aspect-square w-full rounded-xl bg-gradient-to-b from-[#F6F4EE] to-[#EBE7DE] p-6 border border-[#DDD8CC] flex items-center justify-center shadow-inner">
-              <img
-                src={product.image}
-                alt={product.name}
-                className="max-h-full max-w-full object-contain filter contrast-[1.03] drop-shadow-[0_8px_16px_rgba(39,41,35,0.14)]"
-              />
-              {product.badge && (
-                <div className="absolute top-3 left-3">
-                  <span className="font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-[#F0EFE9] text-[#66785F] border border-[#E7E5DE] font-semibold">
-                    {product.badge}
-                  </span>
+            {/* 3D / 2D Toggle if model is available */}
+            {has3DModel && (
+              <div className="flex items-center gap-1.5 p-1 rounded-xl bg-[#F1EFE8] border border-[#DDD8CC] self-start">
+                <button
+                  onClick={() => setView3D(false)}
+                  className={`px-3 py-1 rounded-lg text-xs font-headline font-semibold transition-all ${
+                    !view3D
+                      ? 'bg-[#272923] text-white shadow-xs'
+                      : 'text-[#77776F] hover:text-[#272923]'
+                  }`}
+                >
+                  2D Specimen
+                </button>
+                <button
+                  onClick={() => setView3D(true)}
+                  className={`px-3 py-1 rounded-lg text-xs font-headline font-semibold transition-all flex items-center gap-1.5 ${
+                    view3D
+                      ? 'bg-[#272923] text-white shadow-xs'
+                      : 'text-[#77776F] hover:text-[#272923]'
+                  }`}
+                >
+                  <Box className="w-3.5 h-3.5 text-[#52634B]" />
+                  <span>Interactive 3D</span>
+                </button>
+              </div>
+            )}
+
+            <div className="relative aspect-square w-full rounded-xl bg-gradient-to-b from-[#F6F4EE] to-[#EBE7DE] p-4 sm:p-6 border border-[#DDD8CC] flex items-center justify-center shadow-inner overflow-hidden">
+              {view3D ? (
+                <div className="w-full h-full flex items-center justify-center">
+                  {product.category === 'cricket' && (
+                    <CricketModelViewer
+                      rotationDeg={0}
+                      fallbackImage={product.image}
+                      className="w-full h-full"
+                    />
+                  )}
+                  {product.category === 'badminton' && (
+                    <BadmintonModelViewer
+                      fallbackImage={product.image}
+                      className="w-full h-full"
+                    />
+                  )}
+                  {product.category === 'football' && (
+                    <FootballHeroViewer className="w-full h-full" />
+                  )}
+                  {product.category === 'fitness' && (
+                    <FitnessDumbbellViewer className="w-full h-full" />
+                  )}
                 </div>
+              ) : (
+                <>
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="max-h-full max-w-full object-contain filter contrast-[1.03] drop-shadow-[0_8px_16px_rgba(39,41,35,0.14)]"
+                  />
+                  {product.badge && (
+                    <div className="absolute top-3 left-3">
+                      <span className="font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-[#F0EFE9] text-[#66785F] border border-[#E7E5DE] font-semibold">
+                        {product.badge}
+                      </span>
+                    </div>
+                  )}
+                </>
               )}
             </div>
 
